@@ -1,15 +1,17 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Auto updater
+if [ "$(last --since -7days | wc -l)" -le 4 ]; then
+	/home/mauray/utility-scripts/auto-update-sys.sh
+fi
+
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
-# export MANPATH="/usr/local/man:$MANPATH"
-# Preferred editor for local and remote sessions
 export EDITOR='nvim'
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
 # Basic settings
 HISTFILE=~/.zsh_history
@@ -41,6 +43,7 @@ alias l='exa -al --group-directories-first'
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # ZSH Auto Suggestions (installed via pacman)
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+
 # FZF auto-completion and keybindings
 if command -v fzf &> /dev/null; then
 	source /usr/share/fzf/key-bindings.zsh

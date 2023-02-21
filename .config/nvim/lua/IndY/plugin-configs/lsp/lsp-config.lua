@@ -19,7 +19,8 @@ local function lsp_keymaps(bufnr)
 	vim.keymap.set('n', '<Leader>lgp', function() vim.diagnostic.goto_prev({float = true}) end, opts)
 	vim.keymap.set('n', '<Leader>lgn', function() vim.diagnostic.goto_next({float = true}) end, opts)
 	vim.keymap.set('n', '<leader>lgs', vim.diagnostic.setloclist, opts)
-	vim.keymap.set('n', '<leader>lso', function() require('telescope.builtin').lsp_document_symbols() end, opts)
+	vim.keymap.set('n', '<leader>lso', function() require('fzf-lua').lsp_document_symbols() end, opts)
+	-- vim.keymap.set('n', '<leader>lso', function() require('telescope.builtin').lsp_document_symbols() end, opts) -- Not using telescope
 end
 
 local function lsp_autocommands(client)
@@ -61,6 +62,7 @@ local opts_copy = vim.deepcopy(opts)
 local servers = {
 	"sumneko_lua",
 	"ccls",
+	"pyright",
 	-- "jsonls",
 	-- "tsserver",
 	-- "denols",

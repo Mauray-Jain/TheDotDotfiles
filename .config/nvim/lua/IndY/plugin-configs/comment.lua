@@ -1,6 +1,6 @@
 -- Keybindings
 -- C-/ to toggle comment in insert mode
-vim.keymap.set("i", "<C-_>", "<Esc><Plug>(comment_toggle_current_linewise)gi")
+vim.keymap.set("i", "<C-_>", "<Esc><Plug>(comment_toggle_linewise_current)gi")
 
 -- Setup
 require('Comment').setup{

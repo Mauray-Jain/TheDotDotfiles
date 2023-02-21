@@ -128,22 +128,15 @@ return packer.startup({
 			config = [[require("IndY.plugin-configs.toggleterm")]]
 		}
 		-- use { -- For Web Development
-			-- { -- Displaying colours
-			-- 	'RRethy/vim-hexokinase',
-			-- 	run = "make hexokinase",
-			-- 	cmd = {"HexokinaseTurnOn", "HexokinaseToggle"},
-			-- 	config = [[require("IndY.plugin-configs.vim-hexokinase")]]
-			-- },
+		-- Choose b/w below for colors
+			-- nvim-colortils/colortils.nvim
+			-- brenoprata10/nvim-highlight-colors
+			-- uga-rosa/ccc.nvim
+
 			-- { -- API testing
 			-- 	'NTBBloodbath/rest.nvim',
 			-- 	ft = {"http"},
 			-- 	config = [[require("IndY.plugin-configs.rest")]]
-			-- },
-			-- { -- Something like live-server
-			-- 	'turbio/bracey.vim',
-			-- 	run = "npm install --prefix server",
-			-- 	cmd = "Bracey",
-			-- 	config = [[require("IndY.plugin-configs.bracey")]]
 			-- },
 			-- { -- Emmet for vim bcoz the emmet lsp doesn't have support for some things
 			-- 	'mattn/emmet-vim',
@@ -155,10 +148,15 @@ return packer.startup({
 			'rebelot/kanagawa.nvim',
 			config = [[require("IndY.plugin-configs.kanagawa")]]
 		}
+		--[[ use {
+			'marko-cerovac/material.nvim',
+			config = "vim.g.material_style = 'deep ocean'"
+		} ]]
 		use { -- Notes Taking
 			'nvim-neorg/neorg',
 			requires = 'nvim-lua/plenary.nvim',
-			ft = "norg",
+			run = ":Neorg sync-parsers",
+			-- ft = "norg",
 			after = 'nvim-treesitter',
 			config = [[require("IndY.plugin-configs.neorg")]]
 		}

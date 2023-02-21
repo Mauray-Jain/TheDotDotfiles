@@ -112,7 +112,6 @@ cmp.setup {
 	},
 	experimental = {
 		ghost_text = false,
-		native_menu = false, -- This disables the old menu and uses kind-of new menu
 	},
 }
 
