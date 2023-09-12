@@ -26,7 +26,7 @@ return packer.startup({
 		use 'wbthomason/packer.nvim' -- Have packer manage itself
 		use 'antoinemadec/FixCursorHold.nvim' -- This is rqd. till https://github.com/neovim/neovim/issues/12587 is open
 		use { -- Various Icons
-			'kyazdani42/nvim-web-devicons',
+			'nvim-tree/nvim-web-devicons',
 			config = [[require("IndY.plugin-configs.nvim-web-devicons")]]
 		}
 		use 'neovim/nvim-lspconfig' -- Language Server Protocol
@@ -99,7 +99,7 @@ return packer.startup({
 			config = [[require("IndY.plugin-configs.indent_blankline")]]
 		}
 		use { -- File Explorer
-			'kyazdani42/nvim-tree.lua',
+			'nvim-tree/nvim-tree.lua',
 			requires = 'kyazdani42/nvim-web-devicons', -- Various Icons
 			cmd = {"NvimTreeToggle", "NvimTreeClose"},
 			config = [[require("IndY.plugin-configs.nvim-tree")]]
@@ -152,13 +152,17 @@ return packer.startup({
 			'marko-cerovac/material.nvim',
 			config = "vim.g.material_style = 'deep ocean'"
 		} ]]
-		use { -- Notes Taking
-			'nvim-neorg/neorg',
-			requires = 'nvim-lua/plenary.nvim',
-			run = ":Neorg sync-parsers",
-			-- ft = "norg",
-			after = 'nvim-treesitter',
-			config = [[require("IndY.plugin-configs.neorg")]]
+		-- use { -- Notes Taking
+		-- 	'nvim-neorg/neorg',
+		-- 	requires = 'nvim-lua/plenary.nvim',
+		-- 	run = ":Neorg sync-parsers",
+		-- 	-- ft = "norg",
+		-- 	after = 'nvim-treesitter',
+		-- 	config = [[require("IndY.plugin-configs.neorg")]]
+		-- }
+		use {
+			'ThePrimeagen/vim-be-good',
+			cmd = 'VimBeGood'
 		}
 		-- Automatically set up your configuration after cloning packer.nvim
 		-- Put this at the end after all plugins

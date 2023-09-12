@@ -164,16 +164,6 @@ _G.packer_plugins = {
     path = "/home/mauray/.local/share/nvim/site/pack/packer/start/kanagawa.nvim",
     url = "https://github.com/rebelot/kanagawa.nvim"
   },
-  neorg = {
-    config = { 'require("IndY.plugin-configs.neorg")' },
-    load_after = {
-      ["nvim-treesitter"] = true
-    },
-    loaded = false,
-    needs_bufread = true,
-    path = "/home/mauray/.local/share/nvim/site/pack/packer/opt/neorg",
-    url = "https://github.com/nvim-neorg/neorg"
-  },
   ["nvim-autopairs"] = {
     config = { 'require("IndY.plugin-configs.nvim-autopairs")' },
     load_after = {},
@@ -203,10 +193,10 @@ _G.packer_plugins = {
     needs_bufread = false,
     only_cond = false,
     path = "/home/mauray/.local/share/nvim/site/pack/packer/opt/nvim-tree.lua",
-    url = "https://github.com/kyazdani42/nvim-tree.lua"
+    url = "https://github.com/nvim-tree/nvim-tree.lua"
   },
   ["nvim-treesitter"] = {
-    after = { "nvim-ts-context-commentstring", "nvim-treesitter-textobjects", "neorg" },
+    after = { "nvim-ts-context-commentstring", "nvim-treesitter-textobjects" },
     config = { 'require("IndY.plugin-configs.treesitter")' },
     loaded = false,
     needs_bufread = false,
@@ -237,7 +227,7 @@ _G.packer_plugins = {
     config = { 'require("IndY.plugin-configs.nvim-web-devicons")' },
     loaded = true,
     path = "/home/mauray/.local/share/nvim/site/pack/packer/start/nvim-web-devicons",
-    url = "https://github.com/kyazdani42/nvim-web-devicons"
+    url = "https://github.com/nvim-tree/nvim-web-devicons"
   },
   ["packer.nvim"] = {
     loaded = true,
@@ -258,6 +248,14 @@ _G.packer_plugins = {
     only_cond = false,
     path = "/home/mauray/.local/share/nvim/site/pack/packer/opt/toggleterm.nvim",
     url = "https://github.com/akinsho/toggleterm.nvim"
+  },
+  ["vim-be-good"] = {
+    commands = { "VimBeGood" },
+    loaded = false,
+    needs_bufread = false,
+    only_cond = false,
+    path = "/home/mauray/.local/share/nvim/site/pack/packer/opt/vim-be-good",
+    url = "https://github.com/ThePrimeagen/vim-be-good"
   },
   ["vim-surround"] = {
     loaded = false,
@@ -298,6 +296,10 @@ if not vim.g.packer_custom_loader_enabled then
   vim.g.packer_custom_loader_enabled = true
 end
 
+-- Config for: nvim-cmp
+time([[Config for nvim-cmp]], true)
+require("IndY.plugin-configs.lsp.cmp")
+time([[Config for nvim-cmp]], false)
 -- Config for: nvim-web-devicons
 time([[Config for nvim-web-devicons]], true)
 require("IndY.plugin-configs.nvim-web-devicons")
@@ -306,19 +308,24 @@ time([[Config for nvim-web-devicons]], false)
 time([[Config for kanagawa.nvim]], true)
 require("IndY.plugin-configs.kanagawa")
 time([[Config for kanagawa.nvim]], false)
--- Config for: nvim-cmp
-time([[Config for nvim-cmp]], true)
-require("IndY.plugin-configs.lsp.cmp")
-time([[Config for nvim-cmp]], false)
 
 -- Command lazy-loads
 time([[Defining lazy-load commands]], true)
+pcall(vim.cmd, [[au CmdUndefined lua _Node_Toggle() ++once lua require"packer.load"({'toggleterm.nvim'}, {}, _G.packer_plugins)]])
 pcall(vim.api.nvim_create_user_command, 'FzfLua', function(cmdargs)
           require('packer.load')({'fzf-lua'}, { cmd = 'FzfLua', l1 = cmdargs.line1, l2 = cmdargs.line2, bang = cmdargs.bang, args = cmdargs.args, mods = cmdargs.mods }, _G.packer_plugins)
         end,
         {nargs = '*', range = true, bang = true, complete = function()
           require('packer.load')({'fzf-lua'}, {}, _G.packer_plugins)
           return vim.fn.getcompletion('FzfLua ', 'cmdline')
+      end})
+pcall(vim.cmd, [[au CmdUndefined lua _Deno_Toggle() ++once lua require"packer.load"({'toggleterm.nvim'}, {}, _G.packer_plugins)]])
+pcall(vim.api.nvim_create_user_command, 'VimBeGood', function(cmdargs)
+          require('packer.load')({'vim-be-good'}, { cmd = 'VimBeGood', l1 = cmdargs.line1, l2 = cmdargs.line2, bang = cmdargs.bang, args = cmdargs.args, mods = cmdargs.mods }, _G.packer_plugins)
+        end,
+        {nargs = '*', range = true, bang = true, complete = function()
+          require('packer.load')({'vim-be-good'}, {}, _G.packer_plugins)
+          return vim.fn.getcompletion('VimBeGood ', 'cmdline')
       end})
 pcall(vim.api.nvim_create_user_command, 'NvimTreeToggle', function(cmdargs)
           require('packer.load')({'nvim-tree.lua'}, { cmd = 'NvimTreeToggle', l1 = cmdargs.line1, l2 = cmdargs.line2, bang = cmdargs.bang, args = cmdargs.args, mods = cmdargs.mods }, _G.packer_plugins)
@@ -334,8 +341,6 @@ pcall(vim.api.nvim_create_user_command, 'NvimTreeClose', function(cmdargs)
           require('packer.load')({'nvim-tree.lua'}, {}, _G.packer_plugins)
           return vim.fn.getcompletion('NvimTreeClose ', 'cmdline')
       end})
-pcall(vim.cmd, [[au CmdUndefined lua _Node_Toggle() ++once lua require"packer.load"({'toggleterm.nvim'}, {}, _G.packer_plugins)]])
-pcall(vim.cmd, [[au CmdUndefined lua _Deno_Toggle() ++once lua require"packer.load"({'toggleterm.nvim'}, {}, _G.packer_plugins)]])
 time([[Defining lazy-load commands]], false)
 
 -- Keymap lazy-loads
@@ -351,8 +356,8 @@ vim.cmd [[au FileType lua ++once lua require("packer.load")({'cmp-nvim-lua'}, { 
 time([[Defining lazy-load filetype autocommands]], false)
   -- Event lazy-loads
 time([[Defining lazy-load event autocommands]], true)
-vim.cmd [[au BufEnter * ++once lua require("packer.load")({'bufferline.nvim', 'nvim-treesitter', 'gitsigns.nvim', 'indent-blankline.nvim', 'vim-surround'}, { event = "BufEnter *" }, _G.packer_plugins)]]
 vim.cmd [[au InsertEnter * ++once lua require("packer.load")({'nvim-autopairs', 'LuaSnip'}, { event = "InsertEnter *" }, _G.packer_plugins)]]
+vim.cmd [[au BufEnter * ++once lua require("packer.load")({'gitsigns.nvim', 'indent-blankline.nvim', 'bufferline.nvim', 'nvim-treesitter', 'vim-surround'}, { event = "BufEnter *" }, _G.packer_plugins)]]
 time([[Defining lazy-load event autocommands]], false)
 vim.cmd("augroup END")
 

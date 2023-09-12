@@ -18,6 +18,8 @@ update_nvim() {
 	nvim -e +':PackerSync' +':visual'
 }
 updater() {
+	# FNAME="AUS"$(date | awk '{print $2 $3}')
+	# touch ~/.tmpp/$FNAME
 	read -p "Choice: " choice
 	case $choice in
 		a ) update_sys && sleep 2 && update_nvim;;

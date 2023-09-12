@@ -29,6 +29,8 @@ require'nvim-treesitter.configs'.setup {
 		"typescript",
 		-- "vue",
 	},
+	sync_install = false,
+	auto_install = false,
 	ignore_install = {"vim"},
 	highlight = {
 		-- `false` will disable the whole extension

@@ -39,6 +39,10 @@ require("bufferline").setup{
 			local icon = level:match("error") and " " or " "
 			return " " .. icon ..count
 		end,
+		buffer_close_icon = "",
+    -- buffer_close_icon = '',
+    modified_icon = "●",
+    close_icon = "",
 		offsets = {
 			{ -- Rename bufferline over NvimTree
 				filetype = "NvimTree",

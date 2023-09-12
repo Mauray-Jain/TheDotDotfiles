@@ -60,7 +60,7 @@ local opts = {
 local opts_copy = vim.deepcopy(opts)
 
 local servers = {
-	"sumneko_lua",
+	"lua_ls",
 	"ccls",
 	"pyright",
 	-- "jsonls",
@@ -72,9 +72,9 @@ local servers = {
 }
 
 for _, server in pairs(servers) do
-	if server == "sumneko_lua" then
-		local sumneko_opts = require("IndY.plugin-configs.lsp.lsp-server.sumneko-lua")
-		opts = vim.tbl_deep_extend("force", sumneko_opts, opts)
+	if server == "lua_ls" then
+		local luals_opts = require("IndY.plugin-configs.lsp.lsp-server.luals")
+		opts = vim.tbl_deep_extend("force", luals_opts, opts)
 	elseif server == "ccls" then
 		local ccls_opts = require("IndY.plugin-configs.lsp.lsp-server.ccls")
 		opts = vim.tbl_deep_extend("force", ccls_opts, opts)
