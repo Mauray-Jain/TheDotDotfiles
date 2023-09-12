@@ -5,7 +5,15 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-alias l='exa -al --group-directories-first'
+# Auto updater
+if [ "$(last --since -7days | wc -l)" -le 4 ]; then
+	/home/mauray/utility-scripts/auto-update-sys.sh
+fi
+
+alias zshrc="nvim ~/.zshrc"
+alias nvim-conf="cd ~/.config/nvim && nvim"
+alias config="/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
+alias l='eza -al --group-directories-first'
 PS1='[\u@\h \W]\$ '
 
 # FZF auto-completion and keybindings
