@@ -1,4 +1,4 @@
-require("nvim-web-devicons").setup {
+return {
 	override = {
 		["jsonc"] = {
 			icon = "",

@@ -1,5 +1,5 @@
 -- Setup
-require("nvim-tree").setup {
+return {
 	disable_netrw = true,
 	hijack_cursor = true,
 	hijack_netrw = true,

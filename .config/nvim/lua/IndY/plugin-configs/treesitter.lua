@@ -1,5 +1,5 @@
 -- TreeSitter Setup
-require'nvim-treesitter.configs'.setup {
+return {
 	ensure_installed = {
 		"bash",
 		"c",
@@ -10,7 +10,7 @@ require'nvim-treesitter.configs'.setup {
 		-- "go",
 		"html",
 		-- "http",
-		"java",
+		-- "java",
 		"javascript",
 		"jsdoc",
 		"json",
@@ -23,8 +23,8 @@ require'nvim-treesitter.configs'.setup {
 		-- "php",
 		-- "pug",
 		"python",
-		"rust",
-		"toml",
+		-- "rust",
+		-- "toml",
 		"tsx",
 		"typescript",
 		-- "vue",

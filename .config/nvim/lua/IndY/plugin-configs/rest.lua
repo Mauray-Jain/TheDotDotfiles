@@ -1,4 +1,4 @@
-require("rest-nvim").setup({
+return {
 	-- Open request results in a horizontal split
 	result_split_horizontal = true,
 	-- Skip SSL verification, useful for unknown certificates
@@ -19,4 +19,4 @@ require("rest-nvim").setup({
 	env_file = '.env',
 	custom_dynamic_variables = {},
 	yank_dry_run = true,
-})
+}

@@ -52,6 +52,22 @@ vim.keymap.set("n", "<Leader>fd", function ()
 		cwd = '~/.config/nvim',
 	})
 end)
+-- C-/ to toggle comment in insert mode
+vim.keymap.set("i", "<C-_>", "<Esc><Plug>(comment_toggle_linewise_current)gi")
+-- Navigate through buffers [<Leader>b - buffers]
+vim.keymap.set("n", "<Leader>bn", "<Cmd>BufferLineCycleNext<CR>")
+vim.keymap.set("n", "<Leader>bp", "<Cmd>BufferLineCyclePrev<CR>")
+vim.keymap.set("n", "<Leader>bc", "<Cmd>BufferLinePick<CR>")
+vim.keymap.set("n", "<Leader>bx", "<Cmd>NvimTreeClose<CR><Cmd>bwipeout<CR>")
+-- Move the current buffer backwards or forwards in the bufferline
+vim.keymap.set("n", "<Leader>bbn", "<Cmd>BufferLineMoveNext<CR>")
+vim.keymap.set("n", "<Leader>bbp", "<Cmd>BufferLineMovePrev<CR>")
+-- Sort buffers by directory, language, or a custom criteria
+-- vim.keymap.set("n", "<Leader>be", "<Cmd>BufferLineSortByExtension<CR>")
+-- vim.keymap.set("n", "<Leader>bd", "<Cmd>BufferLineSortByDirectory<CR>")
+-- vim.keymap.set("n", "<Leader>bbc", function ()
+-- 	require'bufferline'.sort_buffers_by(function (buf_a, buf_b) return buf_a.id < buf_b.id end)
+-- end)
 
 -- Some general settings, see :h[elp] options
 vim.g.python3_host_prog = "/usr/sbin/python"
@@ -70,8 +86,11 @@ vim.opt.signcolumn = "yes" -- Sign column is important
 vim.opt.scrolloff = 8 -- Keep atleast 8 lines above and below the cursor
 vim.opt.laststatus = 3 -- Keep a single statusline for all windows
 vim.g.markdown_fenced_languages = { -- For deno lsp server
-  "ts=typescript"
+	"ts=typescript"
 }
+vim.opt.list = true
+-- vim.opt.listchars:append("space:⋅")
+-- vim.opt.listchars:append("eol:↴")
 
 -- Autocommands
 local settingsGroup = vim.api.nvim_create_augroup("Settings", {clear = true})
@@ -85,7 +104,7 @@ vim.api.nvim_create_autocmd("BufWritePost", {
 	group = settingsGroup,
 	desc = "Autocommand that updates, installs and removes plugins whenever you save the plugins.lua file",
 	pattern = "plugins.lua",
-	command = "source <afile> | PackerSync"
+	command = "Lazy sync"
 })
 
 require('IndY.plugins')

@@ -7,8 +7,8 @@ local init_options = {
 		excludeArgs = { "-frounding-math"} ;
 	};
 	cache = {
-      directory = ".ccls-cache";
-  };
+		directory = ".ccls-cache";
+	};
 	single_file_support = true;
 }
 

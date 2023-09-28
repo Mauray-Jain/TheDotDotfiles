@@ -1,4 +1,4 @@
-require('neorg').setup {
+return {
 	load = {
 		-- The core module to get everything working
 		["core.defaults"] = {},

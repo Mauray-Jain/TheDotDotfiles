@@ -101,7 +101,7 @@ ls.add_snippets(nil, {
 		-- Smart require
 		snip("require", fmt([[local {} = require "{}"]], {
 			func(function (import_name)
-				local parts = vim.split(import_name[1][1], ".", true)
+				local parts = vim.split(import_name[1][1], ".")
 				return parts[#parts] or ""
 				end, {1}), -- 1 here stands for insert node
 			insert(1)

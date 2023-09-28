@@ -1,4 +1,4 @@
-require("nvim-autopairs").setup {
+return {
 	check_ts = true, -- Enable Treesitter
 	-- Fast Wrap
 	fast_wrap = {
@@ -13,9 +13,3 @@ require("nvim-autopairs").setup {
 		highlight_grey = "LineNr",
 	},
 }
--- If you want insert `(` after select function or method item
-local cmp_autopairs = require('nvim-autopairs.completion.cmp')
-local cmp = require('cmp')
-cmp.event:on( 'confirm_done', cmp_autopairs.on_confirm_done({  map_char = { tex = '' } }))
--- Automatically wrap functions in lisp
--- cmp_autopairs.lisp[#cmp_autopairs.lisp+1] = "fennel"
