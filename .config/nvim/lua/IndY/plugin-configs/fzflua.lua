@@ -1,5 +1,7 @@
 -- Setup
-return {
+local actions = require("fzf-lua.actions")
+require("fzf-lua").setup {
+	"fzf-vim",
 	winopts = {
 		preview = {
 			wrap = 'wrap',          -- wrap|nowrap
@@ -11,9 +13,15 @@ return {
 			cmd = "man %s | col -bx",
 		},
 	},
+	actions = {
+		files = {
+			["ctrl-h"] = actions.file_split
+		},
+	},
 	-- provider setup
 	files = {
 		prompt = 'Files ❯ ',
+		fd_opts = '--type f --exclude node_modules',
 	},
 	git = {
 		files = {
@@ -32,7 +40,7 @@ return {
 			prompt = 'Branches ❯ ',
 		},
 		stash = {
-			prompt = 'Stash> ',
+			prompt = 'Stash ❯ ',
 		},
 	},
 	grep = {

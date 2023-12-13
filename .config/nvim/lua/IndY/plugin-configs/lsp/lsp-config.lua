@@ -25,7 +25,7 @@ end
 
 local function lsp_autocommands(client)
 	-- Set autocommands conditional on server_capabilities
-	 if client.server_capabilities.documentHighlightProvider then
+	if client.server_capabilities.documentHighlightProvider then
 		local lspGroup = vim.api.nvim_create_augroup("LspAutocmds", {clear = true})
 		vim.api.nvim_create_autocmd("CursorHold", {
 			group = lspGroup,
@@ -43,7 +43,7 @@ local function lsp_autocommands(client)
 end
 
 local on_attach = function(client, bufnr)
-	vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+	-- vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 	vim.api.nvim_create_user_command("Format", function (_) vim.lsp.buf.formatting() end, {})
 	lsp_keymaps(bufnr)
 	lsp_autocommands(client)
@@ -57,12 +57,13 @@ local opts = {
 	on_attach = on_attach,
 	capabilities = capabilities
 }
-local opts_copy = vim.deepcopy(opts)
+-- local opts_copy = vim.deepcopy(opts)
 
 local servers = {
 	"lua_ls",
 	"ccls",
 	"pyright",
+	"zls",
 	-- "jsonls",
 	-- "tsserver",
 	-- "denols",
@@ -73,11 +74,11 @@ local servers = {
 
 for _, server in pairs(servers) do
 	if server == "lua_ls" then
-		local luals_opts = require("IndY.plugin-configs.lsp.lsp-server.luals")
+		local luals_opts = require("IndY.plugin-configs.lsp.lsp-server.lua_ls")
 		opts = vim.tbl_deep_extend("force", luals_opts, opts)
 	elseif server == "ccls" then
 		local ccls_opts = require("IndY.plugin-configs.lsp.lsp-server.ccls")
-		opts = vim.tbl_deep_extend("force", ccls_opts, opts)
+		opts.init_options = ccls_opts
 	elseif server == "jsonls" then
 		local json_opts = require("IndY.plugin-configs.lsp.lsp-server.jsonls")
 		opts = vim.tbl_deep_extend("force", json_opts, opts)
@@ -94,8 +95,15 @@ for _, server in pairs(servers) do
 	elseif server == "tailwindcss" then
 		opts.root_dir = lspconfig.util.root_pattern("tailwind.config.js")
 	else
-		opts = opts_copy
+	-- 	opts = opts_copy
+		-- local path = string.format("IndY.plugin-configs.lsp.lsp-server.%s", server)
+		-- local err, server_opts = pcall(require, path)
+		-- if err ~= true then
+		-- 	print(server_opts)
+		-- 	opts = vim.tbl_deep_extend("force", server_opts, opts)
+		-- end
 	end
+
 	lspconfig[server].setup(opts)
 end
 

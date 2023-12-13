@@ -5,15 +5,15 @@ local get = require('toggleterm.config').get
 ---@param cmd string
 local function create_term(cmd)
 	-- Check if toggleterm is there
-	if not packer_plugins["toggleterm.nvim"] then
-		vim.notify("toggleterm.nvim not installed", vim.log.levels.ERROR)
-		-- vim.cmd([[split term://]]..cmd)
-		-- vim.cmd [[startinsert!]]
-		return
-	end
-	if packer_plugins["toggleterm.nvim"].loaded == false then
-		vim.cmd [[ PackerLoad toggleterm.nvim ]]
-	end
+	-- if not packer_plugins["toggleterm.nvim"] then
+	-- 	vim.notify("toggleterm.nvim not installed", vim.log.levels.ERROR)
+	-- 	-- vim.cmd([[split term://]]..cmd)
+	-- 	-- vim.cmd [[startinsert!]]
+	-- 	return
+	-- end
+	-- if packer_plugins["toggleterm.nvim"].loaded == false then
+	-- 	vim.cmd [[ PackerLoad toggleterm.nvim ]]
+	-- end
 	local repl = Terminal:new({
 		cmd = cmd,
 		hidden = true,

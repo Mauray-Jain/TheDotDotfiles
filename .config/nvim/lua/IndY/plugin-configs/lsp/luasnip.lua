@@ -143,6 +143,16 @@ int main(int argc, char const *argv[]){{
 		]], {insert(0)}))
 })
 
+ls.add_snippets("zig", {
+	snip("bareMin", fmt([[
+const std = @import("std");
+
+pub fn main() !void {{
+	{}
+}}
+		]], {insert(0)}))
+})
+
 -- VSCode style snippets can be defined as
 -- ls.parser.parse_snippet("trigger", "Snippet")
 -- Always call after ls.snippets

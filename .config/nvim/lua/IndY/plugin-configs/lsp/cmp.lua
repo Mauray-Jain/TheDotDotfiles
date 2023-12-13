@@ -97,7 +97,7 @@ cmp.setup {
 				-- buffer = "[Buffer]",
 				nvim_lsp = "[LSP]",
 				luasnip = "[LuaSnip]",
-				nvim_lua = "[Lua]",
+				-- nvim_lua = "[Lua]",
 				-- latex_symbols = "[LaTeX]",
 				neorg = "[Neorg]",
 			})[entry.source.name]
