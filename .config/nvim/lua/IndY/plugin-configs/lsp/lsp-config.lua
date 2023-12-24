@@ -62,6 +62,7 @@ local opts = {
 local servers = {
 	"lua_ls",
 	"ccls",
+	-- "clangd",
 	"pyright",
 	"zls",
 	-- "jsonls",
