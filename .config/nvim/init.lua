@@ -120,6 +120,13 @@ vim.g.python3_host_prog = "/usr/sbin/python"
 vim.g.skip_ts_context_commentstring_module = true
 -- vim.g.python_recommended_style = 0 -- Change recommended style to my style
 
+-- Commands
+if vim.fn.has("wsl") then
+	vim.api.nvim_create_user_command("Clipboard", function (_)
+		vim.fn.system("clip.exe", vim.fn.getreg('"'))
+	end, {})
+end
+
 -- Autocommands
 local settingsGroup = vim.api.nvim_create_augroup("Settings", {clear = true})
 vim.api.nvim_create_autocmd("TextYankPost", {

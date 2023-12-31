@@ -11,14 +11,16 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 export EDITOR='nvim'
-export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+export LIBGL_ALWAYS_SOFTWARE=1 # Only for WSL (couldn't figure out how to run glxgears without this)
+# export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
 # Basic settings
 HISTFILE=~/.zsh_history
 HISTSIZE=1000000
 SAVEHIST=1000000
 setopt autocd extendedglob menucomplete
-bindkey -v # Vi mode
+# bindkey -v # Vi mode
+bindkey -e # Emacs mode
 
 # Tab - Completion Config
 zstyle :compinstall filename '/home/mauray/.zshrc'
@@ -33,10 +35,11 @@ zle -N down-line-or-beginning-search
 [[ -n "${key[Down]}" ]] && bindkey -- "${key[Down]}" down-line-or-beginning-search
 
 # Aliases
-alias zshrc="nvim ~/.zshrc"
+# alias zshrc="nvim ~/.zshrc"
 alias nvim-conf="cd ~/.config/nvim && nvim"
 alias config="/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
-alias l='eza -al --icons --group-directories-first'
+alias l="eza -al --icons --group-directories-first"
+alias mirrors-syu="curl -s \"https://archlinux.org/mirrorlist/?country=IN&protocol=https&ip_version=4&ip_version=6&use_mirror_status=on\" | sed -e 's/^#Server/Server/' -e '/^#/d' | rankmirrors -n 5 -"
 
 # ZSH Syntax Highlighting (installed via pacman)
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
