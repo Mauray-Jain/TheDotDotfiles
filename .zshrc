@@ -40,6 +40,8 @@ alias nvim-conf="cd ~/.config/nvim && nvim"
 alias config="/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
 alias l="eza -al --icons --group-directories-first"
 alias mirrors-syu="curl -s \"https://archlinux.org/mirrorlist/?country=IN&protocol=https&ip_version=4&ip_version=6&use_mirror_status=on\" | sed -e 's/^#Server/Server/' -e '/^#/d' | rankmirrors -n 5 -"
+alias ...="cd ../.."
+alias ....="cd ../../.."
 
 # ZSH Syntax Highlighting (installed via pacman)
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

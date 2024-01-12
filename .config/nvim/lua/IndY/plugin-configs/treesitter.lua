@@ -52,17 +52,17 @@ vim.defer_fn(function()
 			enable = true
 		},
 		-- Textobjects
-		textobjects = {
-			select = { -- Similar to ap and ip
-				enable = true,
-				lookahead = true, -- Always jump to next
-				keymaps = {
-					["if"] = "@function.inner",
-					["af"] = "@function.outer",
-					["ic"] = "@class.inner",
-					["ac"] = "@class.outer",
-				},
-			},
-		},
+		-- textobjects = {
+		-- 	select = { -- Similar to ap and ip
+		-- 		enable = true,
+		-- 		lookahead = true, -- Always jump to next
+		-- 		keymaps = {
+		-- 			["if"] = "@function.inner",
+		-- 			["af"] = "@function.outer",
+		-- 			["ic"] = "@class.inner",
+		-- 			["ac"] = "@class.outer",
+		-- 		},
+		-- 	},
+		-- },
 	}
 end, 0)

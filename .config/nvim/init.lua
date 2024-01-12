@@ -89,6 +89,25 @@ vim.keymap.set("n", "<Leader>bx", "<Cmd>NvimTreeClose<CR><Cmd>bwipeout<CR>")
 -- vim.keymap.set("n", "<Leader>bbc", function ()
 -- 	require'bufferline'.sort_buffers_by(function (buf_a, buf_b) return buf_a.id < buf_b.id end)
 -- end)
+-- Mappings
+vim.keymap.set({"i", "s"}, [[<C-l>]], function ()
+	local ls = require("luasnip")
+	if ls.choice_active() then
+		ls.change_choice(1)
+	end
+end)
+vim.keymap.set({"i", "s"}, [[<C-k>]], function ()
+	local ls = require("luasnip")
+	if ls.expand_or_jumpable() then
+		ls.expand_or_jump()
+	end
+end)
+vim.keymap.set({"i", "s"}, [[<C-j>]], function ()
+	local ls = require("luasnip")
+	if ls.jumpable(-1) then
+		ls.jump(-1)
+	end
+end)
 
 -- Some general settings, see :h[elp] options
 vim.o.termguicolors = true
@@ -149,5 +168,5 @@ vim.api.nvim_create_autocmd("BufWritePost", {
 -- })
 
 require('IndY.plugins')
-require('IndY.plugin-configs.lsp.lsp-config')
+require("IndY.plugin-configs.lsp-config")
 -- require('IndY.statusline')
