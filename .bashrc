@@ -25,3 +25,4 @@ if command -v fzf &> /dev/null; then
 	alias rmpkg="pacman -Qq | fzf --multi --preview 'pacman -Qi {1}' | xargs -ro sudo pacman -Rns"
 	alias rmaur="yay -Qq | fzf --multi --preview 'yay -Qi {1}' | xargs -ro yay -Rns"
 fi
+. "$HOME/.cargo/env"

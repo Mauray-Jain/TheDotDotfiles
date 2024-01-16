@@ -73,15 +73,14 @@ cmp.setup {
 			end
 		end, {"i", "s"}),
 	},
-	sources = {
-		-- Following properties can also be specified here:
-		-- keyword_length: To enable completion for a source only when you cross a specified number of keywords
-		-- priority: To give priority on the basis of numbers
-		-- max_item_count: To limit the number of items coming from a source
+	sources = cmp.config.sources({
 		-- { name = 'nvim_lua' },
-		{ name = 'nvim_lsp' },
-		{ name = 'luasnip' },
-	},
+		{ name = "nvim_lsp" },
+		{ name = "luasnip" },
+		{ name = "path" },
+	}, {
+		{ name = "buffer" }
+	}),
 	formatting = {
 		format = function(entry, vim_item)
 			-- Kind icons
@@ -120,3 +119,21 @@ cmp.setup {
 --     { name = 'luasnip' },
 -- 	},
 -- })
+
+-- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
+cmp.setup.cmdline({ '/', '?' }, {
+	mapping = cmp.mapping.preset.cmdline(),
+	sources = {
+		{ name = "buffer" }
+	}
+})
+
+-- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
+cmp.setup.cmdline(':', {
+	mapping = cmp.mapping.preset.cmdline(),
+	sources = cmp.config.sources({
+		{ name = "path" }
+	}, {
+			{ name = "cmdline" }
+		})
+})

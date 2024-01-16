@@ -20,6 +20,9 @@ local plugins = {
 		event = "InsertEnter",
 		dependencies = {
 			"hrsh7th/cmp-nvim-lsp", -- LSP source for nvim-cmp
+			"hrsh7th/cmp-buffer", -- Buffer word source
+			"hrsh7th/cmp-path", -- Path source
+			"hrsh7th/cmp-cmdline", -- Command line source
 			"saadparwaiz1/cmp_luasnip", -- Snippets source for nvim-cmp
 			"rafamadriz/friendly-snippets", -- More Snippets
 			{ -- Snippets engine
