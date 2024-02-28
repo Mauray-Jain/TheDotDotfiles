@@ -108,6 +108,12 @@ vim.keymap.set({"i", "s"}, [[<C-l>]], function ()
 		ls.change_choice(1)
 	end
 end)
+vim.keymap.set({"i", "s"}, [[<C-h>]], function ()
+	local ls = require("luasnip")
+	if ls.choice_active() then
+		ls.change_choice(-1)
+	end
+end)
 vim.keymap.set({"i", "s"}, [[<C-k>]], function ()
 	local ls = require("luasnip")
 	if ls.expand_or_jumpable() then

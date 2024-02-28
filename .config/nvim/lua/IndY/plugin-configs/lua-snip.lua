@@ -111,7 +111,8 @@ ls.add_snippets("html", {
 		insert(1, "device-width"),
 		insert(2, "1.0"),
 		insert(3, "Document"),
-		insert(0)})),
+		insert(0)
+	})),
 })
 
 ls.add_snippets("c", {
@@ -135,6 +136,25 @@ pub fn main() !void {{
 }}
 		]], {insert(0)}))
 })
+
+ls.add_snippets("go", {
+	snip("bareMin", fmt([[
+package main
+
+import (
+	"{}"
+)
+
+func main() {{
+	{}
+}}
+		]], {
+			insert(1),
+			insert(0),
+		})
+	),
+})
+require("IndY.plugin-configs.snippets.go")
 
 -- VSCode style snippets can be defined as
 -- ls.parser.parse_snippet("trigger", "Snippet")

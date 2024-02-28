@@ -63,6 +63,7 @@ local servers = {
 	-- "ccls",
 	"clangd",
 	-- "denols",
+	"gopls",
 	-- "hls",
 	-- "html",
 	-- "jsonls",

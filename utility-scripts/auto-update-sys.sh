@@ -15,7 +15,7 @@ update_sys() {
 update_nvim() {
 	echo Updating nvim...
 	sleep 1
-	nvim -e +':PackerSync' +':visual'
+	nvim -e +':Lazy sync' +':visual'
 }
 updater() {
 	# FNAME="AUS"$(date | awk '{print $2 $3}')

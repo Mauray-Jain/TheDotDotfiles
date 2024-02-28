@@ -14,6 +14,8 @@ vim.opt.rtp:prepend(lazypath)
 
 -- Plugin Spec
 local plugins = {
+	"tpope/vim-surround", -- Deal with surroundings
+	"tpope/vim-fugitive", -- Git
 	"neovim/nvim-lspconfig", -- Language Server Protocol
 	{ -- Autocompletion for LSP
 		"hrsh7th/nvim-cmp",
@@ -22,7 +24,6 @@ local plugins = {
 			"hrsh7th/cmp-nvim-lsp", -- LSP source for nvim-cmp
 			"hrsh7th/cmp-buffer", -- Buffer word source
 			"hrsh7th/cmp-path", -- Path source
-			"hrsh7th/cmp-cmdline", -- Command line source
 			"saadparwaiz1/cmp_luasnip", -- Snippets source for nvim-cmp
 			"rafamadriz/friendly-snippets", -- More Snippets
 			{ -- Snippets engine
@@ -50,21 +51,11 @@ local plugins = {
 		"nvim-treesitter/nvim-treesitter",
 		build = ":TSUpdate",
 		main = "nvim-treesitter.configs",
-		event = "UIEnter",
+		event = "BufEnter",
 		config = function (_)
 			require("IndY.plugin-configs.treesitter")
 		end
 	},
-	-- {
-	-- 	"mfussenegger/nvim-dap",
-	-- 	dependencies = {
-	-- 		{"rcarriga/nvim-dap-ui"}
-	-- 	},
-	-- 	keys = "<Leader>d",
-	-- 	config = function (_)
-	-- 		require("IndY.plugin-configs.nvim-dap")
-	-- 	end,
-	-- },
 	{ -- Comment or Uncomment Lines
 		"numToStr/Comment.nvim",
 		dependencies = {
@@ -73,10 +64,48 @@ local plugins = {
 		keys = {{"gc", mode = {"n", "v"}}, {"gb", mode = {"n", "v"}}, {"<C-/>", mode = "i"}},
 		opts = {ignore = "^$",}
 	},
-	{ -- Deal with surroundings
-		"tpope/vim-surround",
-		event = "VeryLazy",
+	{ -- Indent Guides
+		"lukas-reineke/indent-blankline.nvim",
+		event = "BufEnter",
+		main = "ibl",
+		opts = { indent = {char = "|", tab_char = "|"} }
 	},
+	{ -- Fuzzy Finder
+		"ibhagwan/fzf-lua",
+		dependencies = "nvim-tree/nvim-web-devicons",
+		cmd = "FzfLua",
+		config = function (_)
+			require('fzf-lua').setup({'fzf-vim'})
+		end,
+	},
+	{ -- File Explorer
+		"nvim-tree/nvim-tree.lua",
+		dependencies = "nvim-tree/nvim-web-devicons", -- Various Icons
+		cmd = {"NvimTreeToggle", "NvimTreeClose"},
+		opts = require("IndY.plugin-configs.nvim-tree")
+	},
+	{ -- A wrapper around the terminal functionality of neovim
+		"akinsho/toggleterm.nvim",
+		keys = [[<C-\>]],
+		-- cmd = {":lua _Node_Toggle()", ":lua _Deno_Toggle()"},
+		config = function (_)
+			require("IndY.plugin-configs.toggleterm")
+		end
+	},
+	{ -- Colour Scheme
+		"rebelot/kanagawa.nvim",
+		lazy = false,
+		priority = 1000,
+		config = function (_)
+			require("kanagawa").setup({
+				dimInactive = true,
+				globalStatus = true,
+				keywordStyle = { italic = false },
+			})
+			vim.cmd [[colorscheme kanagawa]] -- Setting the Colourschme
+		end
+	},
+
 	-- { -- Git
 	-- 	"lewis6991/gitsigns.nvim",
 	-- 	dependencies = {"nvim-lua/plenary.nvim"},
@@ -104,44 +133,26 @@ local plugins = {
 	-- 	end,
 	-- 	opts = require("IndY.plugin-configs.gitsigns"),
 	-- },
-	{ -- Indent Guides
-		"lukas-reineke/indent-blankline.nvim",
-		event = "BufEnter",
-		main = "ibl",
-		opts = { indent = {char = "|", tab_char = "|"} }
-	},
+	-- {
+	-- 	"mfussenegger/nvim-dap",
+	-- 	dependencies = {
+	-- 		{"rcarriga/nvim-dap-ui"}
+	-- 	},
+	-- 	keys = "<Leader>d",
+	-- 	config = function (_)
+	-- 		require("IndY.plugin-configs.nvim-dap")
+	-- 	end,
+	-- },
 	-- { -- Fuzzy Finder
 	-- 	"nvim-telescope/telescope.nvim",
 	-- 	dependencies = {"nvim-lua/plenary.nvim"},
 	-- },
-	{ -- Fuzzy Finder 2
-		"ibhagwan/fzf-lua",
-		dependencies = "nvim-tree/nvim-web-devicons",
-		cmd = "FzfLua",
-		config = function (_)
-			require('fzf-lua').setup({'fzf-vim'})
-		end,
-	},
-	{ -- File Explorer
-		"nvim-tree/nvim-tree.lua",
-		dependencies = "nvim-tree/nvim-web-devicons", -- Various Icons
-		cmd = {"NvimTreeToggle", "NvimTreeClose"},
-		opts = require("IndY.plugin-configs.nvim-tree")
-	},
 	-- { -- Shows the open buffers in a bufferline
 	-- 	"akinsho/bufferline.nvim",
 	-- 	dependencies = "nvim-tree/nvim-web-devicons", -- Various Icons
 	-- 	event = "BufEnter",
 	-- 	opts = require("IndY.plugin-configs.bufferline")
 	-- },
-	{ -- A wrapper around the terminal functionality of neovim
-		"akinsho/toggleterm.nvim",
-		keys = [[<C-\>]],
-		-- cmd = {":lua _Node_Toggle()", ":lua _Deno_Toggle()"},
-		config = function (_)
-			require("IndY.plugin-configs.toggleterm")
-		end
-	},
 	-- {
 	-- 	"uga-rosa/ccc.nvim",
 	-- 	cmd = "CccHighlighterToggle",
@@ -163,19 +174,6 @@ local plugins = {
 	-- 	config = fuction(_) [[require("IndY.plugin-configs.emmet")]] end
 	-- },
 	-- },
-	{ -- Colour Scheme
-		"rebelot/kanagawa.nvim",
-		lazy = false,
-		priority = 1000,
-		config = function (_)
-			require("kanagawa").setup({
-				dimInactive = true,
-				globalStatus = true,
-			})
-
-			vim.cmd [[colorscheme kanagawa]] -- Setting the Colourschme
-		end
-	},
 	-- {
 	-- 	"marko-cerovac/material.nvim",
 	-- 	config = function(_) "vim.g.material_style = "deep ocean"" end
@@ -198,9 +196,9 @@ local opts = {
 	ui = {
 		border = "rounded"
 	},
-	defaults = {
-		lazy = true,
-	},
+	-- defaults = {
+	-- 	lazy = true,
+	-- },
 }
 
 require("lazy").setup(plugins, opts)

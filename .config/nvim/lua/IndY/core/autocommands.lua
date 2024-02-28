@@ -8,12 +8,12 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 	callback = function() vim.highlight.on_yank({higroup = "Incsearch", timeout = 150, on_visual = true}) end
 })
 
-vim.api.nvim_create_autocmd("BufWritePost", {
-	group = settingsGroup,
-	desc = "Autocommand that updates, installs and removes plugins whenever you save the plugins.lua file",
-	pattern = "plugins.lua",
-	command = "Lazy sync"
-})
+-- vim.api.nvim_create_autocmd("BufWritePost", {
+-- 	group = settingsGroup,
+-- 	desc = "Autocommand that updates, installs and removes plugins whenever you save the plugins.lua file",
+-- 	pattern = "plugins.lua",
+-- 	command = "Lazy sync"
+-- })
 
 -- vim.api.nvim_create_autocmd("BufEnter", {
 -- 	group = settingsGroup,
