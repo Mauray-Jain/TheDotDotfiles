@@ -20,8 +20,9 @@ if [[ -z $TMUX ]] && [[ -z $is_tmux_running ]]; then
 	exit 0
 fi
 
-if ! tmux has-sesion -t $session_name 2> /dev/null; then
+if ! tmux has-session -t=$session_name 2> /dev/null; then
 	tmux new-session -ds $session_name -c $repo
+	tmux switch-client -t $session_name
+else
+	tmux attach-session -d -t $session_name
 fi
-
-tmux switch-client -t $session_name
