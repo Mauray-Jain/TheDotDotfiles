@@ -11,4 +11,3 @@ end
 
 require("IndY.plugins")
 require("IndY.plugin-configs.lsp-config")
--- require('IndY.statusline')

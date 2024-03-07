@@ -39,8 +39,8 @@ vim.keymap.set("n", "<C-l>", "<C-w>>") -- Increase width
 -- Plugin Management [<Leader>p - Packer]
 vim.keymap.set("n", "<Leader>ps", "<Cmd>Lazy sync<CR>")
 
--- Nvim-Tree Keybindings [<Leader>n - Nvim-tree]
-vim.keymap.set("n", "<Leader>n", "<Cmd>NvimTreeToggle<CR>")
+-- NetRW Keybindings [<Leader>n - NetRW]
+vim.keymap.set("n", "<Leader>n", "<Cmd>Lexplore!<CR>")
 
 -- Nvim-DAP Keybindings [<Leader>d - debugger]
 vim.keymap.set('n', '<Leader>dc', function() require('dap').continue() end)
@@ -93,7 +93,7 @@ vim.keymap.set("i", "<C-_>", "<Esc><Plug>(comment_toggle_linewise_current)gi")
 -- Navigate through buffers [<Leader>b - buffers]
 vim.keymap.set("n", "<Leader>bn", "<Cmd>bnext<CR>")
 vim.keymap.set("n", "<Leader>bp", "<Cmd>bprev<CR>")
-vim.keymap.set("n", "<Leader>bx", "<Cmd>NvimTreeClose<CR><Cmd>bwipeout<CR>")
+vim.keymap.set("n", "<Leader>bx", "<Cmd>bwipeout<CR>")
 -- Sort buffers by directory, language, or a custom criteria
 -- vim.keymap.set("n", "<Leader>be", "<Cmd>BufferLineSortByExtension<CR>")
 -- vim.keymap.set("n", "<Leader>bd", "<Cmd>BufferLineSortByDirectory<CR>")

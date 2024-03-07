@@ -78,20 +78,6 @@ local plugins = {
 			require('fzf-lua').setup({'fzf-vim'})
 		end,
 	},
-	{ -- File Explorer
-		"nvim-tree/nvim-tree.lua",
-		dependencies = "nvim-tree/nvim-web-devicons", -- Various Icons
-		cmd = {"NvimTreeToggle", "NvimTreeClose"},
-		opts = require("IndY.plugin-configs.nvim-tree")
-	},
-	{ -- A wrapper around the terminal functionality of neovim
-		"akinsho/toggleterm.nvim",
-		keys = [[<C-\>]],
-		-- cmd = {":lua _Node_Toggle()", ":lua _Deno_Toggle()"},
-		config = function (_)
-			require("IndY.plugin-configs.toggleterm")
-		end
-	},
 	{ -- Colour Scheme
 		"rebelot/kanagawa.nvim",
 		lazy = false,
@@ -106,6 +92,20 @@ local plugins = {
 		end
 	},
 
+	-- { -- File Explorer
+	-- 	"nvim-tree/nvim-tree.lua",
+	-- 	dependencies = "nvim-tree/nvim-web-devicons", -- Various Icons
+	-- 	cmd = {"NvimTreeToggle", "NvimTreeClose"},
+	-- 	opts = require("IndY.plugin-configs.nvim-tree")
+	-- },
+	-- { -- A wrapper around the terminal functionality of neovim
+	-- 	"akinsho/toggleterm.nvim",
+	-- 	keys = [[<C-\>]],
+	-- 	-- cmd = {":lua _Node_Toggle()", ":lua _Deno_Toggle()"},
+	-- 	config = function (_)
+	-- 		require("IndY.plugin-configs.toggleterm")
+	-- 	end
+	-- },
 	-- { -- Git
 	-- 	"lewis6991/gitsigns.nvim",
 	-- 	dependencies = {"nvim-lua/plenary.nvim"},
