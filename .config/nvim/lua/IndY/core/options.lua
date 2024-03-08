@@ -34,25 +34,30 @@ vim.g.python3_host_prog = "/usr/sbin/python"
 -- vim.g.python_recommended_style = 0
 
 -- NetRW settings
-vim.g.netrw_winsize = 35
-vim.g.netrw_banner = 0
-vim.g.netrw_keepdir = 0
-vim.g.netrw_sort_sequence = [[[\/]$,*]] -- Show directories first (sorting)
-vim.g.netrw_sizestyle = "H"
-vim.g.netrw_liststyle = 3 -- 3 : tree style listing
+-- Turn off netrw
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+vim.g.loaded_netrwSettings = 1
+vim.g.loaded_netrwFileHandlers = 1
+-- vim.g.netrw_winsize = 35
+-- vim.g.netrw_banner = 0
+-- vim.g.netrw_keepdir = 0
+-- vim.g.netrw_sort_sequence = [[[\/]$,*]] -- Show directories first (sorting)
+-- vim.g.netrw_sizestyle = "H"
+-- vim.g.netrw_liststyle = 3 -- 3 : tree style listing
 
--- Patterns for hiding files, e.g. node_modules
--- NOTE: this works by reading '.gitignore' file
-vim.g.netrw_list_hide = vim.fn["netrw_gitignore#Hide"]()
+-- -- Patterns for hiding files, e.g. node_modules
+-- -- NOTE: this works by reading '.gitignore' file
+-- vim.g.netrw_list_hide = vim.fn["netrw_gitignore#Hide"]()
 
-vim.g.netrw_hide = 1 -- show not-hidden files
-vim.g.netrw_preview = 1 -- Preview files in a vertical split window
-vim.g.netrw_browse_split = 4 -- open previous window)
-vim.cmd("hi! link netrwMarkFile Search")
+-- vim.g.netrw_hide = 1 -- show not-hidden files
+-- vim.g.netrw_preview = 1 -- Preview files in a vertical split window
+-- vim.g.netrw_browse_split = 4 -- open previous window)
+-- vim.cmd("hi! link netrwMarkFile Search")
 
--- Setup file operations commands
-if package.config:sub(1, 1) == "/" then
-	vim.g.netrw_localcopydircmd = "cp -r"
-	vim.g.netrw_localmkdir = "mkdir -p"
-	vim.g.netrw_localrmdir = "rm -r"
-end
+-- -- Setup file operations commands
+-- if package.config:sub(1, 1) == "/" then
+-- 	vim.g.netrw_localcopydircmd = "cp -r"
+-- 	vim.g.netrw_localmkdir = "mkdir -p"
+-- 	vim.g.netrw_localrmdir = "rm -r"
+-- end

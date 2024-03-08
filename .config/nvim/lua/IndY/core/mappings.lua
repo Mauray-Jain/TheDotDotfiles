@@ -31,16 +31,12 @@ vim.keymap.set("n", "<Leader>wj", "<C-w>j")
 vim.keymap.set("n", "<Leader>wk", "<C-w>k")
 vim.keymap.set("n", "<Leader>wl", "<C-w>l")
 vim.keymap.set("n", "<Leader>wh", "<C-w>h")
-vim.keymap.set("n", "<C-k>", "<C-w>+") -- Increase height
-vim.keymap.set("n", "<C-j>", "<C-w>-") -- Decrease height
-vim.keymap.set("n", "<C-h>", "<C-w><") -- Decrease width
-vim.keymap.set("n", "<C-l>", "<C-w>>") -- Increase width
 
 -- Plugin Management [<Leader>p - Packer]
 vim.keymap.set("n", "<Leader>ps", "<Cmd>Lazy sync<CR>")
 
--- NetRW Keybindings [<Leader>n - NetRW]
-vim.keymap.set("n", "<Leader>n", "<Cmd>Lexplore!<CR>")
+-- File explorer Keybindings [<Leader>n - netrw]
+vim.keymap.set("n", "<Leader>n", "<Cmd>Oil<CR>")
 
 -- Nvim-DAP Keybindings [<Leader>d - debugger]
 vim.keymap.set('n', '<Leader>dc', function() require('dap').continue() end)

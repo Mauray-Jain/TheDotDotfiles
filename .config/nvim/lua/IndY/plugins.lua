@@ -91,6 +91,11 @@ local plugins = {
 			vim.cmd [[colorscheme kanagawa]] -- Setting the Colourschme
 		end
 	},
+	{ -- Edit file system like nvim buffer
+		'stevearc/oil.nvim',
+		opts = {},
+		dependencies = "nvim-tree/nvim-web-devicons",
+	},
 
 	-- { -- File Explorer
 	-- 	"nvim-tree/nvim-tree.lua",
