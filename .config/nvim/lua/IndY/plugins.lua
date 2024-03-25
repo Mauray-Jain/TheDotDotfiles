@@ -14,8 +14,6 @@ vim.opt.rtp:prepend(lazypath)
 
 -- Plugin Spec
 local plugins = {
-	"tpope/vim-surround", -- Deal with surroundings
-	"tpope/vim-fugitive", -- Git
 	"neovim/nvim-lspconfig", -- Language Server Protocol
 	{ -- Autocompletion for LSP
 		"hrsh7th/nvim-cmp",
@@ -32,16 +30,12 @@ local plugins = {
 					require("IndY.plugin-configs.lua-snip")
 				end
 			},
-			{ -- Automatically makes pairs of (), [], etc.
-				"windwp/nvim-autopairs",
-				config = function (_)
-					-- require("IndY.plugin-configs.nvim-autopairs")
-					require("nvim-autopairs").setup()
-					local cmp = require "cmp"
-					local cmp_autopairs = require('nvim-autopairs.completion.cmp')
-					cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
-				end
-			},
+			-- { -- Automatically makes pairs of (), [], etc.
+			-- 	"windwp/nvim-autopairs",
+			-- 	config = function (_)
+			-- 		require("IndY.plugin-configs.nvim-autopairs")
+			-- 	end
+			-- },
 		},
 		config = function (_)
 			require("IndY.plugin-configs.cmp")
@@ -63,6 +57,11 @@ local plugins = {
 		},
 		keys = {{"gc", mode = {"n", "v"}}, {"gb", mode = {"n", "v"}}, {"<C-/>", mode = "i"}},
 		opts = {ignore = "^$",}
+	},
+	{
+		"altermo/ultimate-autopair.nvim",
+		event = "InsertEnter",
+		opts = { fastwarp = { enable = false, } },
 	},
 	{ -- Indent Guides
 		"lukas-reineke/indent-blankline.nvim",
@@ -96,6 +95,23 @@ local plugins = {
 		opts = {},
 		dependencies = "nvim-tree/nvim-web-devicons",
 	},
+	{ -- Git
+		"tpope/vim-fugitive",
+		cmd = {"Git", "G"},
+	},
+	{ -- Deal with surroundings
+		"tpope/vim-surround",
+		event = "VeryLazy",
+	},
+	{ -- Notes Taking
+		"nvim-neorg/neorg",
+		dependencies = "nvim-lua/plenary.nvim",
+		build = ":Neorg sync-parsers",
+		tag = "v7.0.0",
+		ft = "norg",
+		cmd = "Neorg",
+		opts = require("IndY.plugin-configs.neorg"),
+	},
 
 	-- { -- File Explorer
 	-- 	"nvim-tree/nvim-tree.lua",
@@ -128,7 +144,6 @@ local plugins = {
 	-- 			-- Extract the directory from the current file's path
 	-- 			current_dir = vim.fn.fnamemodify(current_file, ":h")
 	-- 		end
-
 	-- 		-- Find the Git root directory from the current file's path
 	-- 		local _ = vim.fn.systemlist("git -C " .. vim.fn.escape(current_dir, " ") .. " rev-parse --show-toplevel")[1]
 	-- 		if vim.v.shell_error ~= 0 then
@@ -182,13 +197,6 @@ local plugins = {
 	-- {
 	-- 	"marko-cerovac/material.nvim",
 	-- 	config = function(_) "vim.g.material_style = "deep ocean"" end
-	-- },
-	-- { -- Notes Taking
-	-- 	"nvim-neorg/neorg",
-	-- 	dependencies = "nvim-lua/plenary.nvim",
-	-- 	build = ":Neorg sync-parsers",
-	-- 	-- ft = "norg",
-	-- 	opts = require("IndY.plugin-configs.neorg")
 	-- },
 	-- {
 	-- 	"ThePrimeagen/vim-be-good",

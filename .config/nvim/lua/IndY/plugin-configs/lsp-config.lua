@@ -7,7 +7,7 @@ local function lsp_keymaps(bufnr)
 	vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
 	vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
 	vim.keymap.set('n', '<Leader>li', vim.lsp.buf.implementation, opts)
-	vim.keymap.set('n', '<Leader>ls', vim.lsp.buf.signature_help, opts)
+	vim.keymap.set('n', '<Leader>lsh', vim.lsp.buf.signature_help, opts)
 	vim.keymap.set('n', '<leader>lwa', vim.lsp.buf.add_workspace_folder, opts)
 	vim.keymap.set('n', '<leader>lwr', vim.lsp.buf.remove_workspace_folder, opts)
 	vim.keymap.set('n', '<leader>ll', function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end, opts)
@@ -109,9 +109,6 @@ for _, server in pairs(servers) do
 
 	lspconfig[server].setup(opts)
 end
-
--- Set completeopt to have a better completion experience
-vim.o.completeopt = 'menu,menuone,noselect'
 
 -- Vim Diagnostics Setup
 vim.diagnostic.config({

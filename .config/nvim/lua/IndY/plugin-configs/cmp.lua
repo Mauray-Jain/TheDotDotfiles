@@ -45,7 +45,7 @@ cmp.setup {
 		['<C-f>'] = cmp.mapping.scroll_docs(4),
 		['<C-Space>'] = cmp.mapping.complete(),
 		['<C-e>'] = cmp.mapping.abort(),
-		['<CR>'] = cmp.mapping.confirm {
+		['<C-y>'] = cmp.mapping.confirm {
 			-- behavior = cmp.ConfirmBehavior.Replace,
 			select = true,
 		},
@@ -112,12 +112,12 @@ cmp.setup {
 	},
 }
 
--- cmp.setup.filetype('norg', {
--- 	sources = {
--- 		{ name = 'neorg' },
---     { name = 'luasnip' },
--- 	},
--- })
+cmp.setup.filetype('norg', {
+	sources = {
+		{ name = 'neorg' },
+    { name = 'luasnip' },
+	},
+})
 
 -- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
 cmp.setup.cmdline({ '/', '?' }, {

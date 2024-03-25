@@ -1,31 +1,36 @@
 -- Some general settings, see :h[elp] options
-vim.o.termguicolors = true
-vim.o.breakindent = true
-vim.wo.number = true
-vim.wo.relativenumber = true
-vim.o.mouse = "a"
+vim.opt.termguicolors = true
+vim.opt.breakindent = true
+vim.opt.number = true
+vim.opt.relativenumber = true
+vim.opt.mouse = "a"
+vim.opt.foldlevelstart = 99
 
-vim.o.tabstop = 2
-vim.o.shiftwidth = 2
-vim.o.expandtab = false
-vim.o.smartindent = true
+vim.opt.tabstop = 2
+vim.opt.shiftwidth = 2
+vim.opt.expandtab = false
+vim.opt.smartindent = true
 
-vim.o.swapfile = false
-vim.o.backup = false
+vim.opt.swapfile = false
+vim.opt.backup = false
 
-vim.o.splitbelow = true
-vim.o.splitright = true
-vim.wo.signcolumn = "yes"
-vim.o.scrolloff = 8
-vim.o.laststatus = 3
+vim.opt.splitbelow = true
+vim.opt.splitright = true
+vim.opt.signcolumn = "yes"
+vim.opt.scrolloff = 8
+vim.opt.laststatus = 3
 
-vim.o.ignorecase = true
-vim.o.smartcase = true
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
 
-vim.o.completeopt = "menuone,preview"
-vim.o.list = true
+vim.opt.conceallevel = 2
+
+vim.opt.formatoptions = vim.opt.formatoptions + 'r'
+vim.opt.completeopt = {"menu", "menuone", "preview", "noselect"}
+vim.opt.list = true
 -- vim.opt.listchars:append("space:⋅")
 -- vim.opt.listchars:append("eol:↴")
+vim.g.lisp_rainbow = 1
 vim.g.markdown_fenced_languages = { -- For deno lsp server
 	"ts=typescript"
 }
