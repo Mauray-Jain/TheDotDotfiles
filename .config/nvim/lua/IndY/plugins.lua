@@ -14,7 +14,14 @@ vim.opt.rtp:prepend(lazypath)
 
 -- Plugin Spec
 local plugins = {
-	"neovim/nvim-lspconfig", -- Language Server Protocol
+	{ -- Language Server Protocol
+		"neovim/nvim-lspconfig",
+		event = { "BufReadPost", "BufNewFile", "BufWritePre" },
+		config = function (_)
+			require("IndY.plugin-configs.lsp-config")
+		end
+	},
+	{ "ray-x/lsp_signature.nvim" },
 	{ -- Autocompletion for LSP
 		"hrsh7th/nvim-cmp",
 		event = "InsertEnter",
@@ -30,12 +37,6 @@ local plugins = {
 					require("IndY.plugin-configs.lua-snip")
 				end
 			},
-			-- { -- Automatically makes pairs of (), [], etc.
-			-- 	"windwp/nvim-autopairs",
-			-- 	config = function (_)
-			-- 		require("IndY.plugin-configs.nvim-autopairs")
-			-- 	end
-			-- },
 		},
 		config = function (_)
 			require("IndY.plugin-configs.cmp")
@@ -45,7 +46,7 @@ local plugins = {
 		"nvim-treesitter/nvim-treesitter",
 		build = ":TSUpdate",
 		main = "nvim-treesitter.configs",
-		event = "BufEnter",
+		event = { "BufReadPost", "BufNewFile", "BufWritePre" },
 		config = function (_)
 			require("IndY.plugin-configs.treesitter")
 		end
@@ -55,27 +56,24 @@ local plugins = {
 		dependencies = {
 			{"JoosepAlviste/nvim-ts-context-commentstring", module = true}, -- Smarter Commenting
 		},
-		keys = {{"gc", mode = {"n", "v"}}, {"gb", mode = {"n", "v"}}, {"<C-/>", mode = "i"}},
+		keys = {
+			{"gc", mode = {"n", "v"}},
+			{"gb", mode = {"n", "v"}},
+			{"<C-/>", mode = "i"}
+		},
 		opts = {ignore = "^$",}
 	},
-	{
+	{ -- Automatically makes pairs of (), [], etc.
 		"altermo/ultimate-autopair.nvim",
 		event = "InsertEnter",
 		opts = { fastwarp = { enable = false, } },
 	},
-	{ -- Indent Guides
-		"lukas-reineke/indent-blankline.nvim",
-		event = "BufEnter",
-		main = "ibl",
-		opts = { indent = {char = "|", tab_char = "|"} }
-	},
 	{ -- Fuzzy Finder
-		"ibhagwan/fzf-lua",
+		-- "ibhagwan/fzf-lua",
+		"https://gitlab.com/ibhagwan/fzf-lua",
 		dependencies = "nvim-tree/nvim-web-devicons",
 		cmd = "FzfLua",
-		config = function (_)
-			require('fzf-lua').setup({'fzf-vim'})
-		end,
+		opts = {'fzf-vim'},
 	},
 	{ -- Colour Scheme
 		"rebelot/kanagawa.nvim",
@@ -113,6 +111,12 @@ local plugins = {
 		opts = require("IndY.plugin-configs.neorg"),
 	},
 
+	-- { -- Indent Guides
+	-- 	"lukas-reineke/indent-blankline.nvim",
+	-- 	event = "BufEnter",
+	-- 	main = "ibl",
+	-- 	opts = { indent = {char = "|", tab_char = "|"} }
+	-- },
 	-- { -- File Explorer
 	-- 	"nvim-tree/nvim-tree.lua",
 	-- 	dependencies = "nvim-tree/nvim-web-devicons", -- Various Icons
@@ -209,8 +213,13 @@ local opts = {
 	ui = {
 		border = "rounded"
 	},
-	-- defaults = {
-	-- 	lazy = true,
+	defaults = {
+		lazy = true,
+	},
+	-- performance = {
+	-- 	rtp = {
+	-- 		reset = false,
+	-- 	},
 	-- },
 }
 

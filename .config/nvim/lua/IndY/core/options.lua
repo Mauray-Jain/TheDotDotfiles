@@ -1,4 +1,28 @@
 -- Some general settings, see :h[elp] options
+
+local builtins = {
+  "tar",
+  "zip",
+  "gzip",
+  "tarPlugin",
+  "zipPlugin",
+  "getscript",
+  "getscriptPlugin",
+  "vimball",
+  "vimballPlugin",
+  "2html_plugin",
+  "logipat",
+  "rrhelper",
+}
+local providers = { "perl", "node", "ruby", "python", "python3" }
+for _, builtin in ipairs(builtins) do
+  vim.g["loaded_" .. builtin] = 1
+end
+for _, provider in ipairs(providers) do
+  vim.g["loaded_" .. provider .. "_provider"] = 0
+end
+
+vim.opt.shell = "/bin/zsh -f"
 vim.opt.termguicolors = true
 vim.opt.breakindent = true
 vim.opt.number = true
@@ -17,6 +41,7 @@ vim.opt.backup = false
 vim.opt.splitbelow = true
 vim.opt.splitright = true
 vim.opt.signcolumn = "yes"
+vim.opt.foldcolumn = "auto:2"
 vim.opt.scrolloff = 8
 vim.opt.laststatus = 3
 
@@ -25,25 +50,47 @@ vim.opt.smartcase = true
 
 vim.opt.conceallevel = 2
 
-vim.opt.formatoptions = vim.opt.formatoptions + 'r'
 vim.opt.completeopt = {"menu", "menuone", "preview", "noselect"}
 vim.opt.list = true
+vim.opt.listchars:append("tab:| ")
 -- vim.opt.listchars:append("space:⋅")
 -- vim.opt.listchars:append("eol:↴")
-vim.g.lisp_rainbow = 1
+
+vim.opt.formatoptions = vim.opt.formatoptions
+	- "a"
+	+ "t"
+	+ "c"
+	+ "q"
+	- "o"
+	+ "r"
+	+ "n"
+	+ "j"
+	- "2"
+
+vim.opt.fillchars = {
+	eob = " ",
+	horiz = "━",
+	horizup = "┻",
+	horizdown = "┳",
+	vert = "┃",
+	vertleft = "┫",
+	vertright = "┣",
+	verthoriz = "╋",
+	fold = " ",
+	diff = "─",
+	msgsep = "‾",
+	foldsep = "│",
+	foldopen = "▾",
+	foldclose = "▸",
+}
+
 vim.g.markdown_fenced_languages = { -- For deno lsp server
 	"ts=typescript"
 }
 vim.g.skip_ts_context_commentstring_module = true
-vim.g.python3_host_prog = "/usr/sbin/python"
--- vim.g.python_recommended_style = 0
+vim.g.c_syntax_for_h = true -- Set C syntax for '.h' header files (default is C++)
 
 -- NetRW settings
--- Turn off netrw
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
-vim.g.loaded_netrwSettings = 1
-vim.g.loaded_netrwFileHandlers = 1
 -- vim.g.netrw_winsize = 35
 -- vim.g.netrw_banner = 0
 -- vim.g.netrw_keepdir = 0

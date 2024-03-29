@@ -10,4 +10,3 @@ if vim.fn.has("wsl") then
 end
 
 require("IndY.plugins")
-require("IndY.plugin-configs.lsp-config")

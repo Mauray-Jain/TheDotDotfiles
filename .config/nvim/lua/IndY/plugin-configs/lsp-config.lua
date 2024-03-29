@@ -47,6 +47,14 @@ local on_attach = function(client, bufnr)
 	vim.api.nvim_create_user_command("Format", function (_) vim.lsp.buf.formatting() end, {})
 	lsp_keymaps(bufnr)
 	lsp_autocommands(client)
+	require "lsp_signature".on_attach({
+		bind = true,
+		fix_pos = true,
+		floating_window = false,
+		hint_enable = true,
+		hint_prefix = "● ",
+		hint_scheme = "DiagnosticSignInfo",
+	}, bufnr)
 end
 
 -- Various servers' setup
