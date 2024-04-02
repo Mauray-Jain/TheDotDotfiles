@@ -1,23 +1,27 @@
 -- Some general settings, see :h[elp] options
 
-local builtins = {
-  "tar",
-  "zip",
-  "gzip",
-  "tarPlugin",
-  "zipPlugin",
-  "getscript",
-  "getscriptPlugin",
-  "vimball",
-  "vimballPlugin",
-  "2html_plugin",
-  "logipat",
-  "rrhelper",
-}
+vim.g.loaded_gzip = 1
+vim.g.loaded_zip = 1
+vim.g.loaded_zipPlugin = 1
+vim.g.loaded_tar = 1
+vim.g.loaded_tarPlugin = 1
+
+vim.g.loaded_getscript = 1
+vim.g.loaded_getscriptPlugin = 1
+vim.g.loaded_vimball = 1
+vim.g.loaded_vimballPlugin = 1
+vim.g.loaded_2html_plugin = 1
+
+vim.g.loaded_matchit = 1
+vim.g.loaded_matchparen = 1
+vim.g.loaded_logiPat = 1
+vim.g.loaded_rrhelper = 1
+
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+vim.g.loaded_netrwSettings = 1
+
 local providers = { "perl", "node", "ruby", "python", "python3" }
-for _, builtin in ipairs(builtins) do
-  vim.g["loaded_" .. builtin] = 1
-end
 for _, provider in ipairs(providers) do
   vim.g["loaded_" .. provider .. "_provider"] = 0
 end
@@ -52,7 +56,6 @@ vim.opt.conceallevel = 2
 
 vim.opt.completeopt = {"menu", "menuone", "preview", "noselect"}
 vim.opt.list = true
-vim.opt.listchars:append("tab:| ")
 -- vim.opt.listchars:append("space:⋅")
 -- vim.opt.listchars:append("eol:↴")
 

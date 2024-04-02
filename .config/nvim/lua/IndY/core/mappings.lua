@@ -26,17 +26,11 @@ vim.keymap.del("s", "p")
 -- Remove highlighting after searching
 vim.keymap.set("n", "<Leader><Leader>", "<Cmd>noh<CR>")
 
--- Windows' shortcuts
-vim.keymap.set("n", "<Leader>wj", "<C-w>j")
-vim.keymap.set("n", "<Leader>wk", "<C-w>k")
-vim.keymap.set("n", "<Leader>wl", "<C-w>l")
-vim.keymap.set("n", "<Leader>wh", "<C-w>h")
-
 -- Plugin Management [<Leader>p - Packer]
 vim.keymap.set("n", "<Leader>ps", "<Cmd>Lazy sync<CR>")
 
 -- File explorer Keybindings [<Leader>n - netrw]
-vim.keymap.set("n", "<Leader>n", "<Cmd>Oil<CR>")
+vim.keymap.set("n", "<Leader>n", "<Cmd>lua MiniFiles.open()<CR>")
 
 -- Nvim-DAP Keybindings [<Leader>d - debugger]
 vim.keymap.set('n', '<Leader>dc', function() require('dap').continue() end)

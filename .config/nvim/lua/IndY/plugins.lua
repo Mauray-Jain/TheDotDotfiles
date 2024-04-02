@@ -57,11 +57,17 @@ local plugins = {
 			{"JoosepAlviste/nvim-ts-context-commentstring", module = true}, -- Smarter Commenting
 		},
 		keys = {
-			{"gc", mode = {"n", "v"}},
-			{"gb", mode = {"n", "v"}},
-			{"<C-/>", mode = "i"}
+			{ "gc"   , mode = {"n", "v"} },
+			{ "gb"   , mode = {"n", "v"} },
+			{ "<C-_>", mode = "i" }
 		},
-		opts = {ignore = "^$",}
+		opts = { ignore = "^$" }
+	},
+	{ -- Indent Guides
+		"lukas-reineke/indent-blankline.nvim",
+		event = { "BufReadPost", "BufNewFile", "BufWritePre" },
+		main = "ibl",
+		opts = { indent = {char = "|", tab_char = "|"} }
 	},
 	{ -- Automatically makes pairs of (), [], etc.
 		"altermo/ultimate-autopair.nvim",
@@ -69,8 +75,7 @@ local plugins = {
 		opts = { fastwarp = { enable = false, } },
 	},
 	{ -- Fuzzy Finder
-		-- "ibhagwan/fzf-lua",
-		"https://gitlab.com/ibhagwan/fzf-lua",
+		"ibhagwan/fzf-lua",
 		dependencies = "nvim-tree/nvim-web-devicons",
 		cmd = "FzfLua",
 		opts = {'fzf-vim'},
@@ -88,35 +93,51 @@ local plugins = {
 			vim.cmd [[colorscheme kanagawa]] -- Setting the Colourschme
 		end
 	},
-	{ -- Edit file system like nvim buffer
-		'stevearc/oil.nvim',
+	{ -- File manager
+		"echasnovski/mini.files",
+		lazy = false,
 		opts = {},
-		dependencies = "nvim-tree/nvim-web-devicons",
 	},
 	{ -- Git
 		"tpope/vim-fugitive",
 		cmd = {"Git", "G"},
 	},
 	{ -- Deal with surroundings
-		"tpope/vim-surround",
-		event = "VeryLazy",
+		"echasnovski/mini.surround",
+		event = "BufReadPost",
+		config = function(_)
+			require('mini.surround').setup {
+				mappings = {
+					add = "ys",
+					delete = "ds",
+					find = "",
+					find_left = "",
+					highlight = "gs",
+					replace = "cs",
+					update_n_lines = "",
+				},
+				search_method = "cover_or_next",
+				highlight_duration = 2000,
+			}
+			-- Remap adding surrounding to Visual mode selection
+			vim.keymap.del('x', 'ys')
+			vim.keymap.set('x', 'S', [[:<C-u>lua MiniSurround.add('visual')<CR>]], { silent = true })
+
+			-- Make special mapping for "add surrounding for line"
+			vim.keymap.set('n', 'yss', 'ys_', { remap = true })
+		end,
 	},
 	{ -- Notes Taking
 		"nvim-neorg/neorg",
 		dependencies = "nvim-lua/plenary.nvim",
 		build = ":Neorg sync-parsers",
 		tag = "v7.0.0",
-		ft = "norg",
+		-- ft = "norg",
 		cmd = "Neorg",
 		opts = require("IndY.plugin-configs.neorg"),
 	},
+	{ "nvim-tree/nvim-web-devicons" },
 
-	-- { -- Indent Guides
-	-- 	"lukas-reineke/indent-blankline.nvim",
-	-- 	event = "BufEnter",
-	-- 	main = "ibl",
-	-- 	opts = { indent = {char = "|", tab_char = "|"} }
-	-- },
 	-- { -- File Explorer
 	-- 	"nvim-tree/nvim-tree.lua",
 	-- 	dependencies = "nvim-tree/nvim-web-devicons", -- Various Icons
@@ -216,11 +237,18 @@ local opts = {
 	defaults = {
 		lazy = true,
 	},
-	-- performance = {
-	-- 	rtp = {
-	-- 		reset = false,
-	-- 	},
-	-- },
+	performance = {
+		rtp = {
+			disabled_plugins = {
+				"gzip",
+				"netrwPlugin",
+				"tarPlugin",
+				"tohtml",
+				"tutor",
+				"zipPlugin",
+			},
+		},
+	},
 }
 
 require("lazy").setup(plugins, opts)
