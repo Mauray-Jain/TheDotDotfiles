@@ -69,16 +69,16 @@ local plugins = {
 		main = "ibl",
 		opts = { indent = {char = "|", tab_char = "|"} }
 	},
-	{ -- Automatically makes pairs of (), [], etc.
-		"altermo/ultimate-autopair.nvim",
-		event = "InsertEnter",
-		opts = { fastwarp = { enable = false, } },
-	},
 	{ -- Fuzzy Finder
 		"ibhagwan/fzf-lua",
 		dependencies = "nvim-tree/nvim-web-devicons",
 		cmd = "FzfLua",
 		opts = {'fzf-vim'},
+	},
+	{
+		"m4xshen/autoclose.nvim",
+		event = { "InsertEnter", "CmdLineEnter" },
+		opts = require("IndY.plugin-configs.autoclose"),
 	},
 	{ -- Colour Scheme
 		"rebelot/kanagawa.nvim",
@@ -141,7 +141,6 @@ local plugins = {
 			-- Remap adding surrounding to Visual mode selection
 			vim.keymap.del('x', 'ys')
 			vim.keymap.set('x', 'S', [[:<C-u>lua MiniSurround.add('visual')<CR>]], { silent = true })
-
 			-- Make special mapping for "add surrounding for line"
 			vim.keymap.set('n', 'yss', 'ys_', { remap = true })
 		end,
@@ -162,6 +161,11 @@ local plugins = {
 		opts = {},
 	},
 
+	-- { -- Automatically makes pairs of (), [], etc.
+	-- 	"altermo/ultimate-autopair.nvim",
+	-- 	event = "InsertEnter",
+	-- 	opts = { fastwarp = { enable = false, } },
+	-- },
 	-- { -- File Explorer
 	-- 	"nvim-tree/nvim-tree.lua",
 	-- 	dependencies = "nvim-tree/nvim-web-devicons", -- Various Icons
