@@ -13,7 +13,6 @@ vim.g.loaded_vimballPlugin = 1
 vim.g.loaded_2html_plugin = 1
 
 vim.g.loaded_matchit = 1
-vim.g.loaded_matchparen = 1
 vim.g.loaded_logiPat = 1
 vim.g.loaded_rrhelper = 1
 
@@ -32,7 +31,7 @@ vim.opt.breakindent = true
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.mouse = "a"
-vim.opt.foldlevelstart = 99
+-- vim.opt.foldlevelstart = 99
 
 vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2

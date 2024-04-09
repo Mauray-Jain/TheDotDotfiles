@@ -16,7 +16,7 @@ vim.opt.rtp:prepend(lazypath)
 local plugins = {
 	{ -- Language Server Protocol
 		"neovim/nvim-lspconfig",
-		event = { "BufReadPost", "BufNewFile", "BufWritePre" },
+		event = { "BufRead", "BufNewFile" },
 		config = function (_)
 			require("IndY.plugin-configs.lsp-config")
 		end
@@ -24,7 +24,7 @@ local plugins = {
 	{ "ray-x/lsp_signature.nvim" },
 	{ -- Autocompletion for LSP
 		"hrsh7th/nvim-cmp",
-		event = "InsertEnter",
+		event = { "InsertEnter" },
 		dependencies = {
 			"hrsh7th/cmp-nvim-lsp", -- LSP source for nvim-cmp
 			"hrsh7th/cmp-buffer", -- Buffer word source
@@ -46,7 +46,7 @@ local plugins = {
 		"nvim-treesitter/nvim-treesitter",
 		build = ":TSUpdate",
 		main = "nvim-treesitter.configs",
-		event = { "BufReadPost", "BufNewFile", "BufWritePre" },
+		event = { "BufReadPre" },
 		config = function (_)
 			require("IndY.plugin-configs.treesitter")
 		end
@@ -59,13 +59,13 @@ local plugins = {
 		keys = {
 			{ "gc"   , mode = {"n", "v"} },
 			{ "gb"   , mode = {"n", "v"} },
-			{ "<C-_>", mode = "i" }
+			{ "<C-/>", mode = "i" }
 		},
 		opts = { ignore = "^$" }
 	},
 	{ -- Indent Guides
 		"lukas-reineke/indent-blankline.nvim",
-		event = { "BufReadPost", "BufNewFile", "BufWritePre" },
+		event = { "BufReadPost" },
 		main = "ibl",
 		opts = { indent = {char = "|", tab_char = "|"} }
 	},
@@ -89,6 +89,25 @@ local plugins = {
 				dimInactive = true,
 				globalStatus = true,
 				keywordStyle = { italic = false },
+				colors = {
+					theme = {
+						all = {
+							ui = {
+								bg_gutter = "none",
+							},
+						},
+					},
+				},
+				overrides = function(colors)
+					local theme = colors.theme
+					return {
+						Pmenu = { fg = theme.ui.shade0, bg = theme.ui.bg_p1 },  -- add `blend = vim.o.pumblend` to enable transparency
+						PmenuSel = { fg = "NONE", bg = theme.ui.bg_p2 },
+						PmenuSbar = { bg = theme.ui.bg_m1 },
+						PmenuThumb = { bg = theme.ui.bg_p2 },
+						["@markup.link"] = { underline = true },
+					}
+				end,
 			})
 			vim.cmd [[colorscheme kanagawa]] -- Setting the Colourschme
 		end
@@ -104,7 +123,7 @@ local plugins = {
 	},
 	{ -- Deal with surroundings
 		"echasnovski/mini.surround",
-		event = "BufReadPost",
+		event = { "BufReadPost", "BufNewFile" },
 		config = function(_)
 			require('mini.surround').setup {
 				mappings = {
@@ -136,7 +155,12 @@ local plugins = {
 		cmd = "Neorg",
 		opts = require("IndY.plugin-configs.neorg"),
 	},
-	{ "nvim-tree/nvim-web-devicons" },
+	{ "nvim-tree/nvim-web-devicons" }, -- Icons
+	{ -- Color picker and highlighter
+		"uga-rosa/ccc.nvim",
+		cmd = "CccHighlighterToggle",
+		opts = {},
+	},
 
 	-- { -- File Explorer
 	-- 	"nvim-tree/nvim-tree.lua",
@@ -197,11 +221,6 @@ local plugins = {
 	-- 	dependencies = "nvim-tree/nvim-web-devicons", -- Various Icons
 	-- 	event = "BufEnter",
 	-- 	opts = require("IndY.plugin-configs.bufferline")
-	-- },
-	-- {
-	-- 	"uga-rosa/ccc.nvim",
-	-- 	cmd = "CccHighlighterToggle",
-	-- 	config = function (_) require("ccc").setup() end,
 	-- },
 	-- { -- For Web Development
 	-- Choose b/w below for colors

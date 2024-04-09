@@ -10,3 +10,7 @@ if vim.fn.has("wsl") then
 end
 
 require("IndY.plugins")
+
+-- Statusline
+require("IndY.core.statusline")
+vim.opt.statusline = "%{%v:lua.Statusline()%}"
