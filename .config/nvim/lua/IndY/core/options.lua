@@ -27,6 +27,7 @@ end
 
 vim.opt.shell = "/bin/zsh -f"
 vim.opt.termguicolors = true
+vim.opt.showmode = false
 vim.opt.breakindent = true
 vim.opt.number = true
 vim.opt.relativenumber = true
@@ -63,7 +64,7 @@ vim.opt.formatoptions = vim.opt.formatoptions
 	+ "t"
 	+ "c"
 	+ "q"
-	- "o"
+	+ "/"
 	+ "r"
 	+ "n"
 	+ "j"

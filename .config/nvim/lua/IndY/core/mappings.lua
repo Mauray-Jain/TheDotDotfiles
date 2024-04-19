@@ -2,35 +2,36 @@
 -- Remove Spacebar mapping so that I can make it the leader key
 vim.keymap.set({"n", "v"}, "<Space>", "<Nop>")
 vim.g.mapleader = " "
+local opts = { silent = true }
 
 -- Editing Config file anytime needed
-vim.keymap.set("n", "<Leader>ev", "<Cmd>edit $MYVIMRC<CR>")
+vim.keymap.set("n", "<Leader>ev", "<Cmd>edit $MYVIMRC<CR>", opts)
 -- Source the config file after edit
-vim.keymap.set("n", "<Leader>sv", "<Cmd>source $MYVIMRC<CR>")
+vim.keymap.set("n", "<Leader>sv", "<Cmd>source $MYVIMRC<CR>", opts)
 
 -- Indenting Lines
-vim.keymap.set("v", ">", ">gv")
-vim.keymap.set("v", "<", "<gv")
+vim.keymap.set("v", ">", ">gv", opts)
+vim.keymap.set("v", "<", "<gv", opts)
 -- Moving Lines
-vim.keymap.set("n", "<A-j>", [[<Cmd>m .+1<CR>==]])
-vim.keymap.set("n", "<A-k>", [[<Cmd>m .-2<CR>==]])
-vim.keymap.set("v", "<A-j>", [[:'<,'>m '>+1<CR>gv=gv]])
+vim.keymap.set("n", "<A-j>", [[<Cmd>m .+1<CR>==]], opts)
+vim.keymap.set("n", "<A-k>", [[<Cmd>m .-2<CR>==]], opts)
+vim.keymap.set("v", "<A-j>", [[:'<,'>m '>+1<CR>gv=gv]], opts)
 vim.keymap.set("v", "<A-k>", [[:'<,'>m '<-2<CR>gv=gv]])
 vim.keymap.set("i", "<A-j>", [[<Esc><Cmd>m .+1<CR>==gi]])
 vim.keymap.set("i", "<A-k>", [[<Esc><Cmd>m .-2<CR>==gi]])
 
 -- Pasting on top of selected text without saving the selected text
-vim.keymap.set("v", "p", [["_dP]])
-vim.keymap.del("s", "p")
+vim.keymap.set("v", "p", [["_dP]], opts)
+vim.keymap.del("s", "p", opts)
 
 -- Remove highlighting after searching
-vim.keymap.set("n", "<Leader><Leader>", "<Cmd>noh<CR>")
+vim.keymap.set("n", "<Leader><Leader>", "<Cmd>noh<CR>", opts)
 
 -- Plugin Management [<Leader>p - Packer]
-vim.keymap.set("n", "<Leader>ps", "<Cmd>Lazy sync<CR>")
+vim.keymap.set("n", "<Leader>ps", "<Cmd>Lazy sync<CR>", opts)
 
 -- File explorer Keybindings [<Leader>n - netrw]
-vim.keymap.set("n", "<Leader>n", "<Cmd>lua MiniFiles.open()<CR>")
+vim.keymap.set("n", "<Leader>n", "<Cmd>lua MiniFiles.open()<CR>", opts)
 
 -- Nvim-DAP Keybindings [<Leader>d - debugger]
 vim.keymap.set('n', '<Leader>dc', function() require('dap').continue() end)
@@ -58,12 +59,12 @@ vim.keymap.set('n', '<Leader>ds', function()
 end)
 
 -- Fzf-lua Keybindings [<Leader>f - find]
-vim.keymap.set("n", "<Leader>ff", "<Cmd>FzfLua files<CR>")
-vim.keymap.set("n", "<Leader>fb", "<Cmd>FzfLua buffers<CR>")
-vim.keymap.set("n", "<Leader>fo", "<Cmd>FzfLua oldfiles<CR>")
-vim.keymap.set("n", "<Leader>fh", "<Cmd>FzfLua help_tags<CR>")
-vim.keymap.set("n", "<Leader>fg", "<Cmd>FzfLua live_grep<CR>")
-vim.keymap.set("n", "<Leader>fr", "<Cmd>FzfLua registers<CR>")
+vim.keymap.set("n", "<Leader>ff", "<Cmd>FzfLua files<CR>", opts)
+vim.keymap.set("n", "<Leader>fb", "<Cmd>FzfLua buffers<CR>", opts)
+vim.keymap.set("n", "<Leader>fo", "<Cmd>FzfLua oldfiles<CR>", opts)
+vim.keymap.set("n", "<Leader>fh", "<Cmd>FzfLua help_tags<CR>", opts)
+vim.keymap.set("n", "<Leader>fg", "<Cmd>FzfLua live_grep<CR>", opts)
+vim.keymap.set("n", "<Leader>fr", "<Cmd>FzfLua registers<CR>", opts)
 vim.keymap.set("n", "<Leader>fd", function ()
 	-- Search Dotfiles with Telescope in any directory
 	-- require("telescope.builtin").find_files({
@@ -78,12 +79,12 @@ vim.keymap.set("n", "<Leader>fd", function ()
 end)
 
 -- C-/ to toggle comment in insert mode
-vim.keymap.set("i", "<C-_>", "<Esc><Plug>(comment_toggle_linewise_current)gi")
+vim.keymap.set("i", "<C-_>", "<Esc><Plug>(comment_toggle_linewise_current)gi", opts)
 
 -- Navigate through buffers [<Leader>b - buffers]
-vim.keymap.set("n", "<Leader>bn", "<Cmd>bnext<CR>")
-vim.keymap.set("n", "<Leader>bp", "<Cmd>bprev<CR>")
-vim.keymap.set("n", "<Leader>bx", "<Cmd>bwipeout<CR>")
+vim.keymap.set("n", "<Leader>bn", "<Cmd>bnext<CR>", opts)
+vim.keymap.set("n", "<Leader>bp", "<Cmd>bprev<CR>", opts)
+vim.keymap.set("n", "<Leader>bx", "<Cmd>bwipeout<CR>", opts)
 -- Sort buffers by directory, language, or a custom criteria
 -- vim.keymap.set("n", "<Leader>be", "<Cmd>BufferLineSortByExtension<CR>")
 -- vim.keymap.set("n", "<Leader>bd", "<Cmd>BufferLineSortByDirectory<CR>")

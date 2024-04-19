@@ -14,6 +14,24 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 	end
 })
 
+-- vim.api.nvim_create_autocmd("FileType", {
+-- 	group = settingsGroup,
+-- 	desc = "Set formatoptions",
+-- 	pattern = "*",
+-- 	callback = function ()
+-- 		vim.opt.formatoptions = vim.opt.formatoptions
+-- 			- "a"
+-- 			+ "t"
+-- 			+ "c"
+-- 			+ "q"
+-- 			+ "/"
+-- 			+ "r"
+-- 			+ "n"
+-- 			+ "j"
+-- 			- "2"
+-- 	end
+-- })
+
 -- vim.api.nvim_create_autocmd("BufWritePost", {
 -- 	group = settingsGroup,
 -- 	desc = "Autocommand that updates, installs and removes plugins whenever you save the plugins.lua file",

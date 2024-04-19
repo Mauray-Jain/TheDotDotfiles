@@ -47,9 +47,7 @@ local plugins = {
 		build = ":TSUpdate",
 		main = "nvim-treesitter.configs",
 		event = { "BufReadPre" },
-		config = function (_)
-			require("IndY.plugin-configs.treesitter")
-		end
+		opts = require("IndY.plugin-configs.treesitter")
 	},
 	{ -- Comment or Uncomment Lines
 		"numToStr/Comment.nvim",
@@ -65,7 +63,7 @@ local plugins = {
 	},
 	{ -- Indent Guides
 		"lukas-reineke/indent-blankline.nvim",
-		event = { "BufReadPost" },
+		event = { "BufReadPre", "BufNewFile" },
 		main = "ibl",
 		opts = { indent = {char = "|", tab_char = "|"} }
 	},
@@ -73,11 +71,18 @@ local plugins = {
 		"ibhagwan/fzf-lua",
 		dependencies = "nvim-tree/nvim-web-devicons",
 		cmd = "FzfLua",
-		opts = {'fzf-vim'},
+		opts = {
+			'fzf-vim',
+			keymap = {
+				fzf = {
+					["ctrl-q"] = "select-all+accept",
+				},
+			},
+		},
 	},
 	{
 		"m4xshen/autoclose.nvim",
-		event = { "InsertEnter", "CmdLineEnter" },
+		event = { "InsertEnter" },
 		opts = require("IndY.plugin-configs.autoclose"),
 	},
 	{ -- Colour Scheme
