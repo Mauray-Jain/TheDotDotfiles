@@ -5,7 +5,7 @@ local function lsp_keymaps(bufnr)
 	local opts = { buffer = bufnr }
 	vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
 	vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
-	vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
+	-- vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
 	vim.keymap.set('n', '<Leader>li', vim.lsp.buf.implementation, opts)
 	vim.keymap.set('n', '<Leader>lsh', vim.lsp.buf.signature_help, opts)
 	vim.keymap.set('n', '<leader>lwa', vim.lsp.buf.add_workspace_folder, opts)
@@ -15,9 +15,9 @@ local function lsp_keymaps(bufnr)
 	vim.keymap.set('n', '<leader>lr', vim.lsp.buf.rename, opts)
 	vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
 	vim.keymap.set('n', '<leader>lca', vim.lsp.buf.code_action, opts)
-	vim.keymap.set('n', '<leader>lgo', vim.diagnostic.open_float, opts)
-	vim.keymap.set('n', '<Leader>lgp', function() vim.diagnostic.goto_prev({float = true}) end, opts)
-	vim.keymap.set('n', '<Leader>lgn', function() vim.diagnostic.goto_next({float = true}) end, opts)
+	-- vim.keymap.set('n', '<leader>lgo', vim.diagnostic.open_float, opts)
+	-- vim.keymap.set('n', '<Leader>lgp', function() vim.diagnostic.goto_prev({float = true}) end, opts)
+	-- vim.keymap.set('n', '<Leader>lgn', function() vim.diagnostic.goto_next({float = true}) end, opts)
 	vim.keymap.set('n', '<leader>lgs', vim.diagnostic.setloclist, opts)
 	vim.keymap.set('n', '<leader>lso', function() require('fzf-lua').lsp_document_symbols() end, opts)
 	-- vim.keymap.set('n', '<leader>lso', function() require('telescope.builtin').lsp_document_symbols() end, opts) -- Not using telescope
@@ -126,12 +126,12 @@ vim.diagnostic.config({
 	update_in_insert = true,
 	severity_sort = true,
 	float = {
-		focusable = false,
+		-- focusable = false,
 		border = "rounded",
-		source = "always",
-		style = "minimal",
-		header = "",
-		prefix = "",
+		source = true,
+		-- style = "minimal",
+		-- header = "",
+		-- prefix = "",
 	},
 })
 

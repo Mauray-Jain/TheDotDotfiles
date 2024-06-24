@@ -140,7 +140,7 @@ local function file_content()
 	if vim.bo.buftype == "terminal" then
 		return "term:%t"
 	end
-	return "%f%m%r"
+	return string.format("%s%%m%%r", vim.fn.expand("%:~:."))
 end
 
 local os_icons = {

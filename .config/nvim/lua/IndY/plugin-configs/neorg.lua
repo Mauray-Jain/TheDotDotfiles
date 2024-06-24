@@ -14,7 +14,7 @@ return {
 			config = {
 				workspaces = {
 					notes = "~/notes",
-					resources = "~/repo/resources",
+					resources = "~/repo/Learning-Programming/Resources",
 				},
 			},
 		},

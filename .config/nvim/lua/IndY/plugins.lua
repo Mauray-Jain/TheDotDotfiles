@@ -49,18 +49,18 @@ local plugins = {
 		event = { "BufReadPre" },
 		opts = require("IndY.plugin-configs.treesitter")
 	},
-	{ -- Comment or Uncomment Lines
-		"numToStr/Comment.nvim",
-		dependencies = {
-			{"JoosepAlviste/nvim-ts-context-commentstring", module = true}, -- Smarter Commenting
-		},
-		keys = {
-			{ "gc"   , mode = {"n", "v"} },
-			{ "gb"   , mode = {"n", "v"} },
-			{ "<C-/>", mode = "i" }
-		},
-		opts = { ignore = "^$" }
-	},
+	-- { -- Comment or Uncomment Lines
+	-- 	"numToStr/Comment.nvim",
+	-- 	dependencies = {
+	-- 		{"JoosepAlviste/nvim-ts-context-commentstring", module = true}, -- Smarter Commenting
+	-- 	},
+	-- 	keys = {
+	-- 		{ "gc"   , mode = {"n", "v"} },
+	-- 		{ "gb"   , mode = {"n", "v"} },
+	-- 		{ "<C-/>", mode = "i" }
+	-- 	},
+	-- 	opts = { ignore = "^$" }
+	-- },
 	{ -- Indent Guides
 		"lukas-reineke/indent-blankline.nvim",
 		event = { "BufReadPre", "BufNewFile" },

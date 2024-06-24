@@ -8,6 +8,31 @@ local opts = { silent = true }
 vim.keymap.set("n", "<Leader>ev", "<Cmd>edit $MYVIMRC<CR>", opts)
 -- Source the config file after edit
 vim.keymap.set("n", "<Leader>sv", "<Cmd>source $MYVIMRC<CR>", opts)
+-- Execute the functions which do not take any parameters
+-- vim.keymap.set("n", "<Leader>sf", function (   _,_ )
+-- 	local bufnr = vim.api.nvim_get_current_buf(  )
+-- 	local query = vim.treesitter.query.parse("lua", [[
+-- 		[
+-- 			(function_definition
+-- 				parameters: (parameters) @_param (#lua-match? @_param "\([_%s]*\)")
+-- 				body: (_) @body)
+--
+-- 			(function_declaration
+-- 				parameters: (parameters) @_param (#lua-match? @_param "\([_%s]*\)")
+-- 				body: (_) @body)
+-- 		]
+-- 	]])
+-- 	local parser = vim.treesitter.get_parser(nil, "lua", {})
+-- 	local root = parser:parse()[1]:root()
+-- 	for i, capture in query:iter_captures(root, bufnr, 0, -1) do
+-- 		local name = query.captures[i]
+-- 		if name == "_param" then
+-- 			print"________________---------~~~~~~---------________________"
+-- 			print(vim.treesitter.get_node_text(capture, bufnr, {}))
+-- 			print"________________---------~~~~~~---------________________"
+-- 		end
+-- 	end
+-- end)
 
 -- Indenting Lines
 vim.keymap.set("v", ">", ">gv", opts)
@@ -77,9 +102,6 @@ vim.keymap.set("n", "<Leader>fd", function ()
 		cwd = '~/.config/nvim',
 	})
 end)
-
--- C-/ to toggle comment in insert mode
-vim.keymap.set("i", "<C-_>", "<Esc><Plug>(comment_toggle_linewise_current)gi", opts)
 
 -- Navigate through buffers [<Leader>b - buffers]
 vim.keymap.set("n", "<Leader>bn", "<Cmd>bnext<CR>", opts)
