@@ -5,9 +5,9 @@ endif
 let b:did_indent = 1
 
 setlocal indentexpr=s:getAsmIndent()
-"setlocal indentkeys=<:>,!^F,o,O
+setlocal indentkeys=<:>,!^F,o,O
 
-"let b:undo_indent = "setlocal indentexpr< indentkeys<"
+let b:undo_indent = "setlocal indentexpr< indentkeys<"
 
 function! s:getAsmIndent()
   let l:prevlnum = prevnonblank(v:lnum-1)

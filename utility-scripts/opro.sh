@@ -13,6 +13,14 @@ if [[ -z $repo ]]; then
 fi
 
 session_name=$(basename "$repo" | tr '.' '_')
+
+if [[ -n $TMUX ]]; then
+	tmux new-session -Ad -s $session_name -c $repo
+	tmux switch-client -t $session_name
+else
+	tmux new-session -A -s $session_name -c $repo
+fi
+
 # is_tmux_running=$(pgrep tmux)
 
 # if [[ -z $TMUX ]] && [[ -z $is_tmux_running ]]; then
@@ -25,11 +33,3 @@ session_name=$(basename "$repo" | tr '.' '_')
 # else
 # 	tmux new
 # fi
-
-
-if [[ -n $TMUX ]]; then
-	tmux new-session -Ads $session_name -c $repo
-	tmux switch-client -t $session_name
-else
-	tmux new-session -As $session_name -c $repo
-fi
