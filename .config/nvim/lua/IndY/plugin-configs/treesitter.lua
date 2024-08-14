@@ -21,7 +21,7 @@ return {
 		"make",
 		"markdown",
 		"markdown_inline",
-		-- "norg",
+		"norg",
 		-- "php",
 		-- "pug",
 		"python",

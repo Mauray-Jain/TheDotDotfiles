@@ -13,7 +13,7 @@ return {
 		["core.dirman"] = { -- Manages Neorg workspaces
 			config = {
 				workspaces = {
-					notes = "~/notes",
+					d2 = "~/repo/datu-de-noteaiss/",
 					resources = "~/repo/Learning-Programming/Resources",
 				},
 			},

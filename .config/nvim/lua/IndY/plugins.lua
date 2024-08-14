@@ -97,7 +97,7 @@ local plugins = {
 			},
 		},
 	},
-	{
+	{ -- Auto close ` ( [
 		"m4xshen/autoclose.nvim",
 		event = { "InsertEnter" },
 		opts = require("IndY.plugin-configs.autoclose"),
@@ -169,10 +169,11 @@ local plugins = {
 	},
 	{ -- Notes Taking
 		"nvim-neorg/neorg",
-		dependencies = "nvim-lua/plenary.nvim",
-		build = ":Neorg sync-parsers",
-		tag = "v7.0.0",
-		-- ft = "norg",
+		-- dependencies = "nvim-lua/plenary.nvim",
+		-- build = ":Neorg sync-parsers",
+		-- tag = "v7.0.0",
+		ft = "norg",
+		version = "*",
 		cmd = "Neorg",
 		opts = require("IndY.plugin-configs.neorg"),
 	},
