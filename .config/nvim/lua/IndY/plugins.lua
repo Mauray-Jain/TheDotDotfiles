@@ -183,6 +183,17 @@ local plugins = {
 		cmd = "CccHighlighterToggle",
 		opts = {},
 	},
+	{ -- Emmet for vim bcoz the emmet lsp doesn"t have support for some things
+		"mattn/emmet-vim",
+		ft = {"html", "css", "javascript", "typescript", "vue", "javascriptreact", "typescriptreact"},
+		-- config = fuction(_) [[require("IndY.plugin-configs.emmet")]] end
+	},
+	{
+		'barrett-ruth/live-server.nvim',
+		build = 'sudo npm add -g live-server',
+		cmd = { 'LiveServerStart', 'LiveServerStop' },
+		config = true
+	},
 
 	-- { -- Automatically makes pairs of (), [], etc.
 	-- 	"altermo/ultimate-autopair.nvim",
@@ -258,11 +269,6 @@ local plugins = {
 	-- 	"NTBBloodbath/rest.nvim",
 	-- 	ft = {"http"},
 	-- 	opts = require("IndY.plugin-configs.rest")
-	-- },
-	-- { -- Emmet for vim bcoz the emmet lsp doesn"t have support for some things
-	-- 	"mattn/emmet-vim",
-	-- 	ft = {"html", "css", "javascript", "typescript", "vue", "javascriptreact", "typescriptreact"},
-	-- 	config = fuction(_) [[require("IndY.plugin-configs.emmet")]] end
 	-- },
 	-- },
 	-- {

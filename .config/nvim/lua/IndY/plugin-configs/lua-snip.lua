@@ -11,7 +11,7 @@ local func = ls.function_node -- For computing something before adding it, synta
 -- local dynamic = ls.dynamic_node
 -- local restore = ls.restore_node
 -- local lambda = require("luasnip.extras").lambda
--- local rep = require("luasnip.extras").rep -- To repeat something, syntax: rep(<position>)
+local rep = require("luasnip.extras").rep -- To repeat something, syntax: rep(<position>)
 -- local partial = require("luasnip.extras").partial
 -- local match = require("luasnip.extras").match
 -- local nonempty = require("luasnip.extras").nonempty
@@ -120,11 +120,30 @@ ls.add_snippets("c", {
 #include <stdio.h>
 #include <stdlib.h>
 
-int main(int argc, char const *argv[]){{
+int main(int argc, char const *argv[]) {{
 	{}
 	return 0;
 }}
-		]], {insert(0)}))
+		]], {insert(0)})),
+	snip("bareMinn", fmt([[
+#include <stdio.h>
+
+int main(void) {{
+	{}
+	return 0;
+}}
+		]], {insert(0)})),
+	snip("d2", fmt([[
+#include <stdio.h>
+
+int main(void) {{
+	int {} = 0;
+	printf("{}: ");
+	scanf("%d", &{});
+	{}
+	return 0;
+}}
+		]], {insert(1),insert(2),rep(1),insert(0)}))
 })
 
 ls.add_snippets("zig", {

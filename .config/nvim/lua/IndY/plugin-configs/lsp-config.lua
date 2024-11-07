@@ -70,11 +70,12 @@ local opts = {
 local servers = {
 	-- "ccls",
 	"clangd",
+	"cssls",
 	-- "denols",
 	"gopls",
 	-- "hls",
 	-- "html",
-	-- "jsonls",
+	"jsonls",
 	"lua_ls",
 	"rust_analyzer",
 	"pyright",

@@ -92,6 +92,7 @@ vim.g.markdown_fenced_languages = { -- For deno lsp server
 }
 vim.g.skip_ts_context_commentstring_module = true
 vim.g.c_syntax_for_h = true -- Set C syntax for '.h' header files (default is C++)
+vim.g.user_emmet_leader_key='<C-e>'
 
 -- NetRW settings
 -- vim.g.netrw_winsize = 35
