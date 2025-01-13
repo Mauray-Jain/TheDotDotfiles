@@ -77,10 +77,11 @@ local servers = {
 	-- "html",
 	"jsonls",
 	"lua_ls",
+	"ocamllsp",
 	"rust_analyzer",
 	"pyright",
 	-- "tailwindcss",
-	"tsserver",
+	"ts_ls",
 	"zls",
 }
 
@@ -94,7 +95,7 @@ for _, server in pairs(servers) do
 	elseif server == "jsonls" then
 		local json_opts = require("IndY.plugin-configs.lsp-server.jsonls")
 		opts = vim.tbl_deep_extend("force", json_opts, opts)
-	elseif server == "tsserver" then
+	elseif server == "ts_ls" then
 		opts.init_options = {lint = true}
 		-- opts.root_dir = lspconfig.util.root_pattern("package.json")
 	elseif server == "denols" then

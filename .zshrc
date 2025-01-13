@@ -61,3 +61,12 @@ fi
 
 source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+
+# BEGIN opam configuration
+# This is useful if you're using opam as it adds:
+#   - the correct directories to the PATH
+#   - auto-completion for the opam binary
+# This section can be safely removed at any time if needed.
+[[ ! -r '/home/mauray/.opam/opam-init/init.zsh' ]] || source '/home/mauray/.opam/opam-init/init.zsh' > /dev/null 2> /dev/null
+# END opam configuration

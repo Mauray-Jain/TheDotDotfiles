@@ -22,6 +22,7 @@ return {
 		"markdown",
 		"markdown_inline",
 		"norg",
+		"ocaml",
 		-- "php",
 		-- "pug",
 		"python",
