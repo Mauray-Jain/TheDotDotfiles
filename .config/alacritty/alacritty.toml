@@ -1,0 +1,26 @@
+[general]
+import = [
+    "~/.config/alacritty/themes/themes/tokyo_night.toml"
+]
+
+[window]
+dimensions = { columns = 120, lines = 80 }
+
+[font]
+size = 14.0
+
+[font.bold]
+family = "Hack Nerd Font Mono"
+style = "Bold"
+
+[font.bold_italic]
+family = "Hack Nerd Font Mono"
+style = "Bold Italic"
+
+[font.italic]
+family = "Hack Nerd Font Mono"
+style = "Italic"
+
+[font.normal]
+family = "Hack Nerd Font Mono"
+style = "Regular"

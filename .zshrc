@@ -11,7 +11,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 export EDITOR='nvim'
-export LIBGL_ALWAYS_SOFTWARE=1 # Only for WSL (couldn't figure out how to run glxgears without this)
+# export LIBGL_ALWAYS_SOFTWARE=1 # Only for WSL (couldn't figure out how to run glxgears without this)
 # export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
 # Basic settings
