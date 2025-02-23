@@ -105,6 +105,8 @@ for _, server in pairs(servers) do
 		local capability = vim.lsp.protocol.make_client_capabilities()
 		capability.textDocument.completion.completionItem.snippetSupport = true
 		opts.capabilities = capability
+	elseif server == "pyright" then
+		vim.env.PYENV_VERSION = vim.fn.system('pyenv version'):match('(%S+)%s+%(.-%)')
 	elseif server == "tailwindcss" then
 		opts.root_dir = lspconfig.util.root_pattern("tailwind.config.js")
 	-- else

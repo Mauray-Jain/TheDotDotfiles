@@ -3,6 +3,9 @@ import = [
     "~/.config/alacritty/themes/themes/tokyo_night.toml"
 ]
 
+[env]
+term = "xterm-256color"
+
 [window]
 dimensions = { columns = 120, lines = 80 }
 

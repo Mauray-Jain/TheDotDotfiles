@@ -70,3 +70,6 @@ source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 # This section can be safely removed at any time if needed.
 [[ ! -r '/home/mauray/.opam/opam-init/init.zsh' ]] || source '/home/mauray/.opam/opam-init/init.zsh' > /dev/null 2> /dev/null
 # END opam configuration
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init - zsh)"
