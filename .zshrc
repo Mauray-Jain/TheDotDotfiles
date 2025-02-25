@@ -13,6 +13,7 @@ fi
 export EDITOR='nvim'
 # export LIBGL_ALWAYS_SOFTWARE=1 # Only for WSL (couldn't figure out how to run glxgears without this)
 # export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+export MANPAGER="nvim +Man!"
 
 # Basic settings
 HISTFILE=~/.zsh_history
@@ -62,7 +63,6 @@ fi
 source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-
 # BEGIN opam configuration
 # This is useful if you're using opam as it adds:
 #   - the correct directories to the PATH
@@ -70,6 +70,8 @@ source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 # This section can be safely removed at any time if needed.
 [[ ! -r '/home/mauray/.opam/opam-init/init.zsh' ]] || source '/home/mauray/.opam/opam-init/init.zsh' > /dev/null 2> /dev/null
 # END opam configuration
+
+# Pyenv
 export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init - zsh)"
