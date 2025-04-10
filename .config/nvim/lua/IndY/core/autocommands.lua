@@ -14,6 +14,14 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 	end
 })
 
+vim.api.nvim_create_autocmd("FileType", {
+  group = vim.api.nvim_create_augroup("SetCommentstring", { clear = true }),
+  callback = function()
+    vim.bo.commentstring = "// %s"
+  end,
+  pattern = {"c", "cpp"},
+})
+
 -- vim.api.nvim_create_autocmd("FileType", {
 -- 	group = settingsGroup,
 -- 	desc = "Set formatoptions",

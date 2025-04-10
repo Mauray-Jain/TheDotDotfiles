@@ -112,7 +112,7 @@ local function diagnostic_get(severity)
 end
 
 local function lsp_diagnostics()
-	if vim.diagnostic.is_disabled(0) then
+	if vim.diagnostic.is_enabled({bufnr=0}) then
 		return ""
 	end
 	local errors = diagnostic_get("ERROR")
