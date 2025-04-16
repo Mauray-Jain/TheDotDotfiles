@@ -10,6 +10,7 @@ if vim.fn.has("wsl") then
 end
 
 require("IndY.plugins")
+require("IndY.core.lsp")
 
 -- Statusline
 require("IndY.core.statusline")

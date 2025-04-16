@@ -1,5 +1,5 @@
 -- Setup LSP
-local lspconfig = require 'lspconfig'
+-- local lspconfig = require 'lspconfig'
 
 local function lsp_keymaps(bufnr)
 	local opts = { buffer = bufnr }
@@ -88,28 +88,28 @@ local servers = {
 
 for _, server in pairs(servers) do
 	if server == "lua_ls" then
-		local luals_opts = require("IndY.plugin-configs.lsp-server.lua_ls")
+		local luals_opts = require("IndY.core.lsp-server.lua_ls")
 		opts = vim.tbl_deep_extend("force", luals_opts, opts)
 	elseif server == "ccls" then
-		local ccls_opts = require("IndY.plugin-configs.lsp-server.ccls")
+		local ccls_opts = require("IndY.core.lsp-server.ccls")
 		opts.init_options = ccls_opts
 	elseif server == "jsonls" then
-		local json_opts = require("IndY.plugin-configs.lsp-server.jsonls")
+		local json_opts = require("IndY.core.lsp-server.jsonls")
 		opts = vim.tbl_deep_extend("force", json_opts, opts)
 	elseif server == "ts_ls" then
 		opts.init_options = {lint = true}
 		-- opts.root_dir = lspconfig.util.root_pattern("package.json")
-	elseif server == "denols" then
-		opts.init_options = {lint = true}
-		opts.root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc")
+	-- elseif server == "denols" then
+	-- 	opts.init_options = {lint = true}
+	-- 	opts.root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc")
 	elseif server == "html" then
 		local capability = vim.lsp.protocol.make_client_capabilities()
 		capability.textDocument.completion.completionItem.snippetSupport = true
 		opts.capabilities = capability
 	elseif server == "pyright" then
 		vim.env.PYENV_VERSION = vim.fn.system('pyenv version'):match('(%S+)%s+%(.-%)')
-	elseif server == "tailwindcss" then
-		opts.root_dir = lspconfig.util.root_pattern("tailwind.config.js")
+	-- elseif server == "tailwindcss" then
+	-- 	opts.root_dir = lspconfig.util.root_pattern("tailwind.config.js")
 	-- else
 	-- 	opts = opts_copy
 		-- local path = string.format("IndY.plugin-configs.lsp.lsp-server.%s", server)
@@ -120,7 +120,8 @@ for _, server in pairs(servers) do
 		-- end
 	end
 
-	lspconfig[server].setup(opts)
+	vim.lsp.enable(server)
+	vim.lsp.config(server, opts)
 end
 
 -- Vim Diagnostics Setup

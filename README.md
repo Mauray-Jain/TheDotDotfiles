@@ -35,7 +35,7 @@ Install foomatic-*, gutenprint, system-config-printer
 
 ```bash
 sudo grep -H LBP2900 /usr/share/cups/model/*.ppd
-udo lpadmin -p LBP2900 -m CNCUPSLBP2900CAPTK.ppd -v ccp://localhost:59687
+sudo lpadmin -p LBP2900 -m CNCUPSLBP2900CAPTK.ppd -v ccp://localhost:59687
 sudo lpadmin -p LBP2900 -E
 sudo ccpdadmin -p LBP2900 -o /dev/usb/lp0
 captstatusui -P LBP2900 #works

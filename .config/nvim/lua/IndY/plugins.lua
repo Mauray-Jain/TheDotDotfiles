@@ -33,10 +33,11 @@ vim.opt.rtp:prepend(lazypath)
 local plugins = {
 	{ -- Language Server Protocol
 		"neovim/nvim-lspconfig",
-		event = { "BufRead", "BufNewFile" },
-		config = function (_)
-			require("IndY.plugin-configs.lsp-config")
-		end
+		lazy = false,
+		-- event = { "BufRead", "BufNewFile" },
+		-- config = function (_)
+		-- 	require("IndY.plugin-configs.lsp-config")
+		-- end
 	},
 	{ "ray-x/lsp_signature.nvim" },
 	{ -- Autocompletion for LSP
