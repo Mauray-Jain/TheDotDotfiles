@@ -176,6 +176,7 @@ local plugins = {
 		ft = "norg",
 		version = "*",
 		cmd = "Neorg",
+		-- dependencies = "hrsh7th/nvim-cmp",
 		opts = require("IndY.plugin-configs.neorg"),
 	},
 	{ "nvim-tree/nvim-web-devicons" }, -- Icons

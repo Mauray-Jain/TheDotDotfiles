@@ -18,5 +18,12 @@ return {
 				},
 			},
 		},
+		["core.completion"] = {
+			config = {
+				engine = "nvim-cmp",
+			},
+		},
+		["core.looking-glass"] = {},
+		["core.export"] = {},
 	},
 }

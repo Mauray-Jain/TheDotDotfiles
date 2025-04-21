@@ -139,3 +139,4 @@ vim.keymap.set({"i", "s"}, [[<C-j>]], function ()
 		ls.jump(-1)
 	end
 end)
+

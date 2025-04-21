@@ -22,6 +22,15 @@ vim.api.nvim_create_autocmd("FileType", {
   pattern = {"c", "cpp"},
 })
 
+vim.api.nvim_create_autocmd("Filetype", {
+  group = vim.api.nvim_create_augroup("SetNeorgMapings", { clear = true }),
+	pattern = "norg",
+	callback = function()
+		vim.keymap.set({"i", "n"}, [[<LocalLeader>nlg]], "<Plug>(neorg.looking-glass.magnify-code-block)", {buffer = true})
+	end,
+})
+
+
 -- vim.api.nvim_create_autocmd("FileType", {
 -- 	group = settingsGroup,
 -- 	desc = "Set formatoptions",
