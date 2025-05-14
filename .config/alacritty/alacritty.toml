@@ -10,7 +10,7 @@ term = "xterm-256color"
 dimensions = { columns = 120, lines = 80 }
 
 [font]
-size = 14.0
+size = 12.0
 
 [font.bold]
 family = "Hack Nerd Font Mono"
