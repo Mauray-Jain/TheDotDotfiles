@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
-feh --bg-scale ~/Downloads/wallpapers/war\ plane.jpg &
+~/.fehbg &
 xrandr --dpi 120 &
 picom &
+xss-lock -- slock &

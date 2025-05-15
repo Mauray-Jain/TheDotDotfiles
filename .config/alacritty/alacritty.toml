@@ -8,6 +8,7 @@ term = "xterm-256color"
 
 [window]
 dimensions = { columns = 120, lines = 80 }
+opacity = 0.9
 
 [font]
 size = 12.0
