@@ -5,7 +5,7 @@
 if [[ $# -eq 1 ]]; then
 	repo=$1
 else
-	repo=$(find ~/repo -maxdepth 1 -mindepth 1 -type d | fzf)
+	repo=$(find ~/repo ~/suckless -maxdepth 1 -mindepth 1 -type d | fzf)
 fi
 
 if [[ -z $repo ]]; then
