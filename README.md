@@ -6,6 +6,7 @@
 - Neovim
 - Tmux
 - Ly
+- DWL
 - And most importantly <b><i>My creative Mind!!</i></b>
 
 ## How to Setup?
@@ -40,3 +41,26 @@ sudo lpadmin -p LBP2900 -E
 sudo ccpdadmin -p LBP2900 -o /dev/usb/lp0
 captstatusui -P LBP2900 #works
 ```
+
+## DWL Dependencies & other stuff
+- brightnessctl
+- cliphist
+- dunst
+- grim
+- slurp
+- swaybg
+- swaylock
+- swayidle
+- waybar
+- xdg-protocol-desktop-portal-wlr
+- wmenu
+- wmctrl
+- wlr-randr
+- wlroots
+- wlr-protocols
+- wayland-utils
+- wayland-protocols
+- wl-clipboard
+- wf-recorder
+
+
