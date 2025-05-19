@@ -348,6 +348,7 @@ static void motionnotify(uint32_t time, struct wlr_input_device *device, double 
 		double sy, double sx_unaccel, double sy_unaccel);
 static void motionrelative(struct wl_listener *listener, void *data);
 static void moveresize(const Arg *arg);
+static void moveresizekb(const Arg *arg);
 static void outputmgrapply(struct wl_listener *listener, void *data);
 static void outputmgrapplyortest(struct wlr_output_configuration_v1 *config, int test);
 static void outputmgrtest(struct wl_listener *listener, void *data);
@@ -382,7 +383,6 @@ static void togglebar(const Arg *arg);
 static void togglefloating(const Arg *arg);
 static void togglefullscreen(const Arg *arg);
 static void togglegaps(const Arg *arg);
-static void moveresizekb(const Arg *arg);
 static void toggletag(const Arg *arg);
 static void toggleview(const Arg *arg);
 static void unlocksession(struct wl_listener *listener, void *data);
@@ -3154,7 +3154,6 @@ tile(Monitor *m)
 			n++;
 	if (n == 0)
 		return;
-
 	if (smartgaps == n && m && m->lt[m->sellt]->arrange == monocle)
 		e = 0;
 
@@ -3212,6 +3211,13 @@ togglefullscreen(const Arg *arg)
 }
 
 void
+togglegaps(const Arg *arg)
+{
+	selmon->gaps = !selmon->gaps;
+	arrange(selmon);
+}
+
+void
 moveresizekb(const Arg *arg)
 {
 	Client *c = focustop(selmon);
@@ -3227,13 +3233,6 @@ moveresizekb(const Arg *arg)
 		.width = c->geom.width + ((int *)arg->v)[2],
 		.height = c->geom.height + ((int *)arg->v)[3],
 	}, 1, 1);
-}
-
-void
-togglegaps(const Arg *arg)
-{
-	selmon->gaps = !selmon->gaps;
-	arrange(selmon);
 }
 
 void
