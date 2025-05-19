@@ -55,10 +55,10 @@
 
 ############### USER: MODIFY THESE VARIABLES ###############
 readonly dwl_output_filename="$HOME"/.cache/dwltags                  # File to watch for dwl output
-readonly labels=( "1" "2" "3" "4" "5" "6" "7" "8" "9" )              # Number of lables must match dwl's config.h tagcount
+readonly labels=( "" "" "" "" "" "" "" "" "" )              # Number of lables must match dwl's config.h tagcount
 pango_tag_default="<span                      foreground='#989710'>" # Pango span style for 'default' tags
 pango_tag_active="<span overline='single' overline_color='#fe8019'>" # Pango span style for 'active' tags
-pango_tag_selected="<span background='#0033ff' foreground='#458588'>" # Pango span style for 'selected' tags
+pango_tag_selected="<span                     foreground='#458588'>" # Pango span style for 'selected' tags
 pango_tag_urgent="<span                       background='#fb4934'>" # Pango span style for 'urgent' tags
 pango_layout="<span                           foreground='#fe8019'>" # Pango span style for 'layout' character
 pango_title="<span                            foreground='#458588'>" # Pango span style for 'title' monitor

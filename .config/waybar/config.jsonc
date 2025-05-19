@@ -1,12 +1,7 @@
 {
-	"modules-left": ["custom/dwl"],
-	"modules-center": ["clock#date"],
-	"modules-right": ["battery", "pulseaudio", "clock", "tray"],
-	"custom/dwl": {
-		"exec": "/home/mauray/.config/waybar/waybar-dwl.sh 'eDP-1'",
-		"format": {},
-		"return-type": "json"
-	},
+	"modules-left": ["dwl/tags"],
+	"modules-center": ["dwl/window"],
+	"modules-right": ["clock#date", "clock", "battery", "pulseaudio", "tray"],
 	"clock#date": {
 		"format": "{:%b %d}"
 	},
