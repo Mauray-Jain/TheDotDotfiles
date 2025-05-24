@@ -5,6 +5,9 @@
 	"clock#date": {
 		"format": "{:%b %d}"
 	},
+	"clock": {
+		"format": "{:%T}"
+	},
 	"battery": {
 		"bat": "BAT0",
 		"states": {
@@ -19,9 +22,6 @@
 		"format-bluetooth": "[VB {volume}%]",
 		"format-source": "[M  {volume}%]",
 		"format-source-muted": "[MM {volume}%]"
-	},
-	"clock": {
-		"format": "{:%T}"
 	},
 	"tray": {
 		"spacing": 10
