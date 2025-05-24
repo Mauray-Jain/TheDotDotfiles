@@ -7,6 +7,9 @@
 	},
 	"battery": {
 		"bat": "BAT0",
+		"states": {
+			"critical": 20
+		},
 		"format": "[B -{capacity}%]",
 		"format-charging": "[B +{capacity}%]"
 	},

@@ -58,6 +58,10 @@ button:hover {
 	border-bottom: white solid 3px;
 }
 
+#battery.critical:not(.charging) {
+	border-bottom: #f53c3c solid 3px;
+}
+
 /* you can set a style on hover for any module like this */
 /* #pulseaudio:hover { */
 /* 	background-color: #a37800; */
