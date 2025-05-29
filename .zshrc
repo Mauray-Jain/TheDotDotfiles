@@ -14,6 +14,7 @@ export EDITOR='nvim'
 # export LIBGL_ALWAYS_SOFTWARE=1 # Only for WSL (couldn't figure out how to run glxgears without this)
 # export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export MANPAGER="nvim +Man!"
+export _JAVA_AWT_WM_NONREPARENTING=1 # ghidra stuff
 
 # Basic settings
 HISTFILE=~/.zsh_history
