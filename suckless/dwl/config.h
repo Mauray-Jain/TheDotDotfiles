@@ -39,6 +39,7 @@ static const Rule rules[] = {
 	/* examples: */
 	{ "Gimp_EXAMPLE",     NULL,       0,            1,           -1 }, /* Start on currently visible tags floating, not tiled */
 	{ "firefox_EXAMPLE",  NULL,       1 << 8,       0,           -1 }, /* Start on ONLY tag "9" */
+	{ "Emulator",         NULL,       0,            1,           -1 }, /* Android emulator */
 };
 
 /* layout(s) */
@@ -133,10 +134,13 @@ static const enum libinput_config_tap_button_map button_map = LIBINPUT_CONFIG_TA
 
 /* commands */
 static const char *termcmd[]   = { "alacritty", NULL };
-static const char *menucmd[]   = { "wmenu-run", NULL };
+static const char *menucmd[]   = { "rofi", "-show", "run", NULL };
 static const char *upvol[]     = { "pactl", "set-sink-volume", "@DEFAULT_SINK@", "+5%", NULL };
 static const char *downvol[]   = { "pactl", "set-sink-volume", "@DEFAULT_SINK@", "-5%", NULL };
 static const char *togglevol[] = { "pactl", "set-sink-mute", "@DEFAULT_SINK@", "toggle", NULL };
+static const char *upsource[]     = { "pactl", "set-source-volume", "@DEFAULT_SOURCE@", "+5%", NULL };
+static const char *downsource[]   = { "pactl", "set-source-volume", "@DEFAULT_SOURCE@", "-5%", NULL };
+static const char *togglesource[] = { "pactl", "set-source-mute", "@DEFAULT_SOURCE@", "toggle", NULL };
 static const char *brighter[]  = { "brightnessctl", "set", "5%+", NULL };
 static const char *dimmer[]    = { "brightnessctl", "set", "5%-", NULL };
 static const char *suspend[]   = { "swaylock", "-i", "~/Downloads/wallpapers/sunrise.jpg", "--font", "\"Hack Nerd Font Mono\"", NULL };
@@ -153,7 +157,9 @@ static const Key keys[] = {
 	{ 0,                                            XKB_KEY_XF86AudioRaiseVolume,   spawn,                   {.v = upvol } },
 	{ 0,                                            XKB_KEY_XF86AudioLowerVolume,   spawn,                   {.v = downvol } },
 	{ 0,                                            XKB_KEY_XF86AudioMute,          spawn,                   {.v = togglevol } },
-	{ 0,                                            XKB_KEY_XF86AudioMute,          spawn,                   {.v = togglevol } },
+	{ WLR_MODIFIER_SHIFT,                           XKB_KEY_XF86AudioRaiseVolume,   spawn,                   {.v = upsource } },
+	{ WLR_MODIFIER_SHIFT,                           XKB_KEY_XF86AudioLowerVolume,   spawn,                   {.v = downsource } },
+	{ WLR_MODIFIER_SHIFT,                           XKB_KEY_XF86AudioMute,          spawn,                   {.v = togglesource } },
 	{ 0,                                            XKB_KEY_XF86MonBrightnessDown,  spawn,                   {.v = dimmer } },
 	{ 0,                                            XKB_KEY_XF86MonBrightnessUp,    spawn,                   {.v = brighter } },
 
@@ -163,7 +169,7 @@ static const Key keys[] = {
 	{ MODKEY|WLR_MODIFIER_CTRL,                     XKB_KEY_r,                      spawn,                   SHCMD("wf-recorder -g $(slurp) --file=~/Videos/Screencasts/$(date).mp4") },
 
 	/* Clipboard */
-	{ MODKEY,                                       XKB_KEY_v,                      spawn,                   SHCMD("cliphist list | wmenu -l 5 | cliphist decode | wl-copy") },
+	{ MODKEY,                                       XKB_KEY_v,                      spawn,                   SHCMD("cliphist list | rofi -dmenu | cliphist decode | wl-copy") },
 
 	/* Apps */
 	{ MODKEY,                                       XKB_KEY_z,                      spawn,                   SHCMD("zen-browser") },

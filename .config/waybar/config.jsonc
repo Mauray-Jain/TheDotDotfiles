@@ -1,7 +1,7 @@
 {
 	"modules-left": ["dwl/tags"],
 	"modules-center": ["dwl/window"],
-	"modules-right": ["clock#date", "clock", "battery", "pulseaudio", "tray"],
+	"modules-right": ["clock#date", "clock", "battery", "pulseaudio", "pulseaudio#source", "tray"],
 	"clock#date": {
 		"format": "{:%b %d}"
 	},
@@ -19,9 +19,12 @@
 	"pulseaudio": {
 		"format": "[V  {volume}%]",
 		"format-muted": "[VM {volume}%]",
-		"format-bluetooth": "[VB {volume}%]",
-		"format-source": "[M  {volume}%]",
-		"format-source-muted": "[MM {volume}%]"
+		"format-bluetooth": "[VB {volume}%]"
+	},
+	"pulseaudio#source": {
+		"format": "{format_source}",
+		"format-source": "[S  {volume}%]",
+		"format-source-muted": "[SM {volume}%]"
 	},
 	"tray": {
 		"spacing": 10

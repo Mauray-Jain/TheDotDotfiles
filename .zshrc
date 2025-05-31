@@ -45,6 +45,7 @@ alias mirrors-syu="curl -s \"https://archlinux.org/mirrorlist/?country=IN&protoc
 alias ...="cd ../.."
 alias ....="cd ../../.."
 alias opro="~/utility-scripts/opro.sh"
+alias rofi-calc="rofi -show calc -modi calc -no-show-match -no-sort"
 
 # ZSH Syntax Highlighting (installed via pacman)
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

@@ -1,0 +1,15 @@
+@theme "~/.config/rofi/arthur-theme.rasi"
+
+configuration {
+	font: "FiraMono Nerd Font 14";
+
+  timeout {
+		action: "kb-cancel";
+		delay: 0;
+	}
+	filebrowser {
+		directories-first: true;
+		sorting-method: "name";
+  }
+}
+

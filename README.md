@@ -47,20 +47,19 @@ captstatusui -P LBP2900 #works
 - cliphist
 - dunst
 - grim
+- pcmanfm-gtk3
+- rofi-wayland
 - slurp
 - swaybg
 - swaylock
 - swayidle
-- waybar
 - xdg-protocol-desktop-portal-wlr
-- wmenu
-- wmctrl
-- wlr-randr
+- waybar
+- wayland-protocols
+- wayland-utils
+- wf-recorder
+- wl-clipboard
 - wlroots
 - wlr-protocols
-- wayland-utils
-- wayland-protocols
-- wl-clipboard
-- wf-recorder
-
-
+- wlr-randr
+- wmctrl
