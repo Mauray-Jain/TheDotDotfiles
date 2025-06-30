@@ -50,6 +50,14 @@ button:hover {
 	box-shadow: inset 0 -3px #ffffff;
 }
 
+#workspaces button {
+	color: #ffffff;
+}
+
+#workspaces button.focused {
+	border-bottom: white solid 3px;
+}
+
 #tags button {
 	color: #ffffff;
 }

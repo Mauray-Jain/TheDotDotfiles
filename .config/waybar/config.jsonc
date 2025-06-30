@@ -1,12 +1,16 @@
 {
-	"modules-left": ["dwl/tags"],
-	"modules-center": ["dwl/window"],
+	// "modules-left": ["dwl/tags"],
+	// "modules-center": ["dwl/window"],
+	"modules-left": ["niri/workspaces"],
+	"modules-center": ["niri/window"],
 	"modules-right": ["clock#date", "clock", "battery", "pulseaudio", "pulseaudio#source", "tray"],
 	"clock#date": {
-		"format": "{:%b %d}"
+		"format": "{:%b %d}",
+		"on-click": "gnome-calendar"
 	},
 	"clock": {
-		"format": "{:%T}"
+		"format": "{:%T}",
+		"interval": 1
 	},
 	"battery": {
 		"bat": "BAT0",
