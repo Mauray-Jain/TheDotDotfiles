@@ -2,11 +2,16 @@ spawn-at-startup "waybar"
 spawn-at-startup "sh" "-c" "swaybg -i ~/Downloads/wallpapers/war_plane.jpg"
 spawn-at-startup "wl-paste" "--watch" "cliphist" "store"
 spawn-at-startup "nm-applet"
+spawn-at-startup "dunst"
 
 prefer-no-csd
 
 output "eDP-1" {
 	scale 1.0
+}
+
+hotkey-overlay {
+	skip-at-startup
 }
 
 window-rule {

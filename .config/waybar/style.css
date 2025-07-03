@@ -54,9 +54,9 @@ button:hover {
 	color: #ffffff;
 }
 
-#workspaces button.focused {
-	border-bottom: white solid 3px;
-}
+/* #workspaces button.focused { */
+/* 	border-bottom: white solid 3px; */
+/* } */
 
 #tags button {
 	color: #ffffff;
