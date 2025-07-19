@@ -34,8 +34,8 @@ vim.opt.relativenumber = true
 vim.opt.mouse = "a"
 vim.opt.foldlevelstart = 1
 
-vim.opt.tabstop = 2
-vim.opt.shiftwidth = 2
+vim.opt.tabstop = 4
+vim.opt.shiftwidth = 4
 vim.opt.expandtab = false
 vim.opt.smartindent = true
 

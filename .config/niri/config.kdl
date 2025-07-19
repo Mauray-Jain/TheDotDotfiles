@@ -1,10 +1,15 @@
-spawn-at-startup "waybar"
 spawn-at-startup "sh" "-c" "swaybg -i ~/Downloads/wallpapers/war_plane.jpg"
 spawn-at-startup "wl-paste" "--watch" "cliphist" "store"
 spawn-at-startup "nm-applet"
-spawn-at-startup "dunst"
+// spawn-at-startup "dunst"
+spawn-at-startup "xwayland-satellite"
+spawn-at-startup "waybar"
 
 prefer-no-csd
+
+environment {
+	DISPLAY ":0"
+}
 
 output "eDP-1" {
 	scale 1.0
