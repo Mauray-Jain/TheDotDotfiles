@@ -25,6 +25,8 @@ for _, provider in ipairs(providers) do
   vim.g["loaded_" .. provider .. "_provider"] = 0
 end
 
+vim.opt.rtp:prepend { "/home/mauray/.opam/default/share/ocp-indent/vim" }
+
 vim.opt.shell = "/bin/zsh -f"
 vim.opt.termguicolors = true
 vim.opt.showmode = false

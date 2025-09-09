@@ -62,9 +62,6 @@ if command -v fzf &> /dev/null; then
 	alias rmaur="yay -Qq | fzf --multi --preview 'yay -Qi {1}' | xargs -ro yay -Rns"
 fi
 
-source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
 # BEGIN opam configuration
 # This is useful if you're using opam as it adds:
 #   - the correct directories to the PATH
@@ -77,3 +74,11 @@ source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init - zsh)"
+
+# Hyperledger fabric
+export FABRIC_SAMPLES_ROOT="$HOME/repo/fabric-samples"
+export FABRIC_CFG_PATH="$FABRIC_SAMPLES_ROOT/config"
+[[ -d $FABRIC_SAMPLES_ROOT/bin ]] && export PATH="$FABRIC_SAMPLES_ROOT/bin:$PATH"
+
+source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
