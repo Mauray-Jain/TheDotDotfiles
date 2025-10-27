@@ -98,11 +98,6 @@ local plugins = {
 			},
 		},
 	},
-	{ -- Auto close ` ( [
-		"m4xshen/autoclose.nvim",
-		event = { "InsertEnter" },
-		opts = require("IndY.plugin-configs.autoclose"),
-	},
 	{ -- Colour Scheme
 		"rebelot/kanagawa.nvim",
 		lazy = false,
@@ -143,6 +138,11 @@ local plugins = {
 	{ -- Git
 		"tpope/vim-fugitive",
 		cmd = {"Git", "G"},
+	},
+	{ -- Auto close ` ( [
+		"m4xshen/autoclose.nvim",
+		event = { "InsertEnter" },
+		opts = require("IndY.plugin-configs.autoclose"),
 	},
 	{ -- Deal with surroundings
 		"echasnovski/mini.surround",
@@ -185,17 +185,28 @@ local plugins = {
 		cmd = "CccHighlighterToggle",
 		opts = {},
 	},
+	{ -- Flutter dev
+		'nvim-flutter/flutter-tools.nvim',
+		ft = "dart",
+		dependencies = {
+			'nvim-lua/plenary.nvim',
+			-- 'stevearc/dressing.nvim', -- optional for vim.ui.select
+		},
+		opts = {
+			fvm = true,
+		},
+	},
 	{ -- Emmet for vim bcoz the emmet lsp doesn"t have support for some things
 		"mattn/emmet-vim",
 		ft = {"html", "css", "javascript", "typescript", "vue", "javascriptreact", "typescriptreact"},
 		-- config = fuction(_) [[require("IndY.plugin-configs.emmet")]] end
 	},
-	{
-		'barrett-ruth/live-server.nvim',
-		build = 'sudo npm add -g live-server',
-		cmd = { 'LiveServerStart', 'LiveServerStop' },
-		config = true
-	},
+	-- { -- Make a live server (frontend testing)
+	-- 	'barrett-ruth/live-server.nvim',
+	-- 	build = 'sudo npm add -g live-server',
+	-- 	cmd = { 'LiveServerStart', 'LiveServerStop' },
+	-- 	config = true
+	-- },
 
 	-- { -- Automatically makes pairs of (), [], etc.
 	-- 	"altermo/ultimate-autopair.nvim",

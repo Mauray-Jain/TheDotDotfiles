@@ -82,3 +82,9 @@ export FABRIC_CFG_PATH="$FABRIC_SAMPLES_ROOT/config"
 
 source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+## [Completion]
+## Completion scripts setup. Remove the following line to uninstall
+[[ -f /home/mauray/.dart-cli-completion/zsh-config.zsh ]] && . /home/mauray/.dart-cli-completion/zsh-config.zsh || true
+## [/Completion]
+
