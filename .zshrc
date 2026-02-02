@@ -1,6 +1,6 @@
 # Auto updater
 if [ "$(last --since -7days | wc -l)" -le 4 ]; then
-	/home/mauray/utility-scripts/auto-update-sys.sh
+	$HOME/utility-scripts/auto-update-sys.sh
 fi
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc
@@ -15,6 +15,7 @@ export EDITOR='nvim'
 # export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export MANPAGER="nvim +Man!"
 export _JAVA_AWT_WM_NONREPARENTING=1 # ghidra stuff
+export PATH="$HOME/flutter/bin:$PATH"
 
 # Basic settings
 HISTFILE=~/.zsh_history
@@ -25,7 +26,7 @@ setopt autocd extendedglob menucomplete
 bindkey -e # Emacs mode
 
 # Tab - Completion Config
-zstyle :compinstall filename '/home/mauray/.zshrc'
+zstyle :compinstall filename '$HOME/.zshrc'
 autoload -Uz compinit
 zstyle ':completion:*' menu select
 compinit
@@ -67,7 +68,7 @@ fi
 #   - the correct directories to the PATH
 #   - auto-completion for the opam binary
 # This section can be safely removed at any time if needed.
-[[ ! -r '/home/mauray/.opam/opam-init/init.zsh' ]] || source '/home/mauray/.opam/opam-init/init.zsh' > /dev/null 2> /dev/null
+[[ ! -r '$HOME/.opam/opam-init/init.zsh' ]] || source '$HOME/.opam/opam-init/init.zsh' > /dev/null 2> /dev/null
 # END opam configuration
 
 # Pyenv
@@ -82,9 +83,3 @@ export FABRIC_CFG_PATH="$FABRIC_SAMPLES_ROOT/config"
 
 source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-## [Completion]
-## Completion scripts setup. Remove the following line to uninstall
-[[ -f /home/mauray/.dart-cli-completion/zsh-config.zsh ]] && . /home/mauray/.dart-cli-completion/zsh-config.zsh || true
-## [/Completion]
-

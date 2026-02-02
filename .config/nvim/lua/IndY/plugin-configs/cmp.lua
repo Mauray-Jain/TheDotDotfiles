@@ -78,8 +78,8 @@ cmp.setup {
 		{ name = "luasnip" },
 		{ name = "path" },
 	}, {
-		{ name = "buffer" }
-	}),
+			{ name = "buffer" }
+		}),
 	formatting = {
 		format = function(entry, vim_item)
 			-- Kind icons
@@ -95,7 +95,7 @@ cmp.setup {
 			})[entry.source.name]
 			return vim_item
 		end
-  },
+	},
 	confirm_opts = {
 		-- behavior = cmp.ConfirmBehavior.Replace,
 		select = false,
@@ -115,7 +115,7 @@ cmp.setup {
 cmp.setup.filetype('norg', {
 	sources = {
 		{ name = 'neorg' },
-    { name = 'luasnip' },
+		{ name = 'luasnip' },
 	},
 })
 

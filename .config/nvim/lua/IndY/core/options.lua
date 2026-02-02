@@ -55,6 +55,7 @@ vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
 vim.opt.conceallevel = 2
+vim.opt.winborder = "rounded"
 
 vim.opt.completeopt = {"menu", "menuone", "preview", "noselect"}
 vim.opt.list = true

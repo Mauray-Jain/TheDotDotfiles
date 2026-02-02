@@ -190,11 +190,9 @@ local plugins = {
 		ft = "dart",
 		dependencies = {
 			'nvim-lua/plenary.nvim',
-			-- 'stevearc/dressing.nvim', -- optional for vim.ui.select
+			'stevearc/dressing.nvim', -- optional for vim.ui.select
 		},
-		opts = {
-			fvm = true,
-		},
+		config = true,
 	},
 	{ -- Emmet for vim bcoz the emmet lsp doesn"t have support for some things
 		"mattn/emmet-vim",
