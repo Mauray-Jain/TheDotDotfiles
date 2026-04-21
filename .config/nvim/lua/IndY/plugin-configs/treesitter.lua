@@ -1,57 +1,61 @@
 -- TreeSitter Setup
 return {
-	ensure_installed = {
-		"bash",
-		"c",
-		-- "c_sharp",
-		"cpp",
-		"css",
-		-- "dart",
-		"go",
-		"html",
-		-- "http",
-		-- "java",
-		"javascript",
-		"jsdoc",
-		"json",
-		-- "json5",
-		-- "jsonc",
-		-- "kotlin",
-		"lua",
-		"make",
-		"markdown",
-		"markdown_inline",
-		"norg",
-		"ocaml",
-		-- "php",
-		-- "pug",
-		"python",
-		"rust",
-		"scheme",
-		-- "toml",
-		"tsx",
-		"typescript",
-		"vim",
-		"vimdoc",
-		-- "vue",
-		"zig",
-	},
 	sync_install = false,
 	auto_install = false,
+	init = function()
+		vim.api.nvim_create_autocmd('FileType', {
+			callback = function()
+				-- Enable treesitter highlighting and disable regex syntax
+				pcall(vim.treesitter.start)
+				-- Enable treesitter-based indentation
+				vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+			end,
+		})
+		local ensure_installed = {
+			"bash",
+			"c",
+			-- "c_sharp",
+			"cpp",
+			"css",
+			-- "dart",
+			"go",
+			"html",
+			-- "http",
+			-- "java",
+			"javascript",
+			"jsdoc",
+			"json",
+			-- "json5",
+			-- "jsonc",
+			-- "kotlin",
+			"lua",
+			"make",
+			"markdown",
+			"markdown_inline",
+			"norg",
+			"ocaml",
+			-- "php",
+			-- "pug",
+			"python",
+			"rust",
+			"scheme",
+			-- "toml",
+			"tsx",
+			"typescript",
+			"vim",
+			"vimdoc",
+			-- "vue",
+			"zig",
+		}
+		local alreadyInstalled = require('nvim-treesitter.config').get_installed()
+		local parsersToInstall = vim.iter(ensure_installed)
+		:filter(function(parser)
+			return not vim.tbl_contains(alreadyInstalled, parser)
+		end)
+		:totable()
+		require('nvim-treesitter').install(parsersToInstall)
+	end,
 	-- ignore_install = {"vim"},
-	highlight = {
-		-- `false` will disable the whole extension
-		enable = true,
-		-- Setting this to true will run `:h syntax` and tree-sitter at the same time.
-		-- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
-		-- Using this option may slow down your editor, and you may see some duplicate highlights.
-		-- Instead of true it can also be a list of languages
-		additional_vim_regex_highlighting = false,
-	},
-	-- Indent with = based on treesitter
-	indent = {
-		enable = true,
-	},
 	-- Nvim-Autopairs
 	-- autopairs = {
 	-- 	enable = true

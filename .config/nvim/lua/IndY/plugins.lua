@@ -63,7 +63,7 @@ local plugins = {
 	{ -- Syntax Highlighting and parsers
 		"nvim-treesitter/nvim-treesitter",
 		build = ":TSUpdate",
-		main = "nvim-treesitter.configs",
+		branch = "main",
 		event = { "BufReadPre" },
 		opts = require("IndY.plugin-configs.treesitter")
 	},
@@ -104,6 +104,7 @@ local plugins = {
 		priority = 1000,
 		config = function (_)
 			require("kanagawa").setup({
+				-- compile = true,
 				dimInactive = true,
 				globalStatus = true,
 				keywordStyle = { italic = false },
@@ -132,7 +133,10 @@ local plugins = {
 	},
 	{ -- File manager
 		"echasnovski/mini.files",
-		lazy = false,
+		-- lazy = false,
+		keys = {
+			{ "<Leader>n", "<Cmd>lua MiniFiles.open()<CR>" }
+		},
 		opts = {},
 	},
 	{ -- Git

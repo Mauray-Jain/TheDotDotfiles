@@ -173,7 +173,8 @@ func main() {{
 		})
 	),
 })
-require("IndY.plugin-configs.snippets.go")
+-- nvim 0.12 breakage
+-- require("IndY.plugin-configs.snippets.go")
 
 -- VSCode style snippets can be defined as
 -- ls.parser.parse_snippet("trigger", "Snippet")
