@@ -22,7 +22,7 @@ vim.g.loaded_netrwSettings = 1
 
 local providers = { "perl", "node", "ruby", "python", "python3" }
 for _, provider in ipairs(providers) do
-  vim.g["loaded_" .. provider .. "_provider"] = 0
+	vim.g["loaded_" .. provider .. "_provider"] = 0
 end
 
 vim.opt.rtp:prepend { "/home/mauray/.opam/default/share/ocp-indent/vim" }

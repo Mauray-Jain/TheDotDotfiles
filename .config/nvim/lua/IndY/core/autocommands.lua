@@ -15,21 +15,32 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 })
 
 vim.api.nvim_create_autocmd("FileType", {
-  group = vim.api.nvim_create_augroup("SetCommentstring", { clear = true }),
-  callback = function()
-    vim.bo.commentstring = "// %s"
-  end,
-  pattern = {"c", "cpp"},
+	group = settingsGroup,
+	callback = function()
+		vim.bo.commentstring = "// %s"
+	end,
+	pattern = {"c", "cpp"},
 })
 
-vim.api.nvim_create_autocmd("Filetype", {
-  group = vim.api.nvim_create_augroup("SetNeorgMapings", { clear = true }),
+vim.api.nvim_create_autocmd("FileType", {
+	group = settingsGroup,
 	pattern = "norg",
 	callback = function()
-		vim.keymap.set({"i", "n"}, [[<LocalLeader>nlg]], "<Plug>(neorg.looking-glass.magnify-code-block)", {buffer = true})
+		vim.keymap.set(
+			{"i", "n"},
+			[[<LocalLeader>nlg]],
+			"<Plug>(neorg.looking-glass.magnify-code-block)",
+			{ buffer = true }
+		)
 	end,
 })
 
+vim.api.nvim_create_autocmd("BufWritePost", {
+	group = settingsGroup,
+	desc = "Autocommand that updates, installs and removes plugins whenever you save the plugins.lua file",
+	pattern = "plugins.lua",
+	command = "Lazy sync"
+})
 
 -- vim.api.nvim_create_autocmd("FileType", {
 -- 	group = settingsGroup,
@@ -37,23 +48,16 @@ vim.api.nvim_create_autocmd("Filetype", {
 -- 	pattern = "*",
 -- 	callback = function ()
 -- 		vim.opt.formatoptions = vim.opt.formatoptions
--- 			- "a"
--- 			+ "t"
--- 			+ "c"
--- 			+ "q"
--- 			+ "/"
--- 			+ "r"
--- 			+ "n"
--- 			+ "j"
--- 			- "2"
+-- 		- "a"
+-- 		+ "t"
+-- 		+ "c"
+-- 		+ "q"
+-- 		+ "/"
+-- 		+ "r"
+-- 		+ "n"
+-- 		+ "j"
+-- 		- "2"
 -- 	end
--- })
-
--- vim.api.nvim_create_autocmd("BufWritePost", {
--- 	group = settingsGroup,
--- 	desc = "Autocommand that updates, installs and removes plugins whenever you save the plugins.lua file",
--- 	pattern = "plugins.lua",
--- 	command = "Lazy sync"
 -- })
 
 -- vim.api.nvim_create_autocmd("BufEnter", {

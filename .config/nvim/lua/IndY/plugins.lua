@@ -15,17 +15,17 @@
 -- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
-  local lazyrepo = "https://github.com/folke/lazy.nvim.git"
-  local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
-  if vim.v.shell_error ~= 0 then
-    vim.api.nvim_echo({
-      { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
-      { out, "WarningMsg" },
-      { "\nPress any key to exit..." },
-    }, true, {})
-    vim.fn.getchar()
-    os.exit(1)
-  end
+	local lazyrepo = "https://github.com/folke/lazy.nvim.git"
+	local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
+	if vim.v.shell_error ~= 0 then
+		vim.api.nvim_echo({
+			{ "Failed to clone lazy.nvim:\n", "ErrorMsg" },
+			{ out, "WarningMsg" },
+			{ "\nPress any key to exit..." },
+		}, true, {})
+		vim.fn.getchar()
+		os.exit(1)
+	end
 end
 vim.opt.rtp:prepend(lazypath)
 
@@ -67,18 +67,6 @@ local plugins = {
 		event = { "BufReadPre" },
 		opts = require("IndY.plugin-configs.treesitter")
 	},
-	-- { -- Comment or Uncomment Lines
-	-- 	"numToStr/Comment.nvim",
-	-- 	dependencies = {
-	-- 		{"JoosepAlviste/nvim-ts-context-commentstring", module = true}, -- Smarter Commenting
-	-- 	},
-	-- 	keys = {
-	-- 		{ "gc"   , mode = {"n", "v"} },
-	-- 		{ "gb"   , mode = {"n", "v"} },
-	-- 		{ "<C-/>", mode = "i" }
-	-- 	},
-	-- 	opts = { ignore = "^$" }
-	-- },
 	{ -- Indent Guides
 		"lukas-reineke/indent-blankline.nvim",
 		event = { "BufReadPre", "BufNewFile" },
@@ -137,6 +125,7 @@ local plugins = {
 		keys = {
 			{ "<Leader>n", "<Cmd>lua MiniFiles.open()<CR>" }
 		},
+		event = "VeryLazy",
 		opts = {},
 	},
 	{ -- Git
@@ -203,13 +192,24 @@ local plugins = {
 		ft = {"html", "css", "javascript", "typescript", "vue", "javascriptreact", "typescriptreact"},
 		-- config = fuction(_) [[require("IndY.plugin-configs.emmet")]] end
 	},
+	-- { -- Comment or Uncomment Lines
+	-- 	"numToStr/Comment.nvim",
+	-- 	dependencies = {
+	-- 		{"JoosepAlviste/nvim-ts-context-commentstring", module = true}, -- Smarter Commenting
+	-- 	},
+	-- 	keys = {
+	-- 		{ "gc"   , mode = {"n", "v"} },
+	-- 		{ "gb"   , mode = {"n", "v"} },
+	-- 		{ "<C-/>", mode = "i" }
+	-- 	},
+	-- 	opts = { ignore = "^$" }
+	-- },
 	-- { -- Make a live server (frontend testing)
 	-- 	'barrett-ruth/live-server.nvim',
 	-- 	build = 'sudo npm add -g live-server',
 	-- 	cmd = { 'LiveServerStart', 'LiveServerStop' },
 	-- 	config = true
 	-- },
-
 	-- { -- Automatically makes pairs of (), [], etc.
 	-- 	"altermo/ultimate-autopair.nvim",
 	-- 	event = "InsertEnter",
@@ -235,7 +235,7 @@ local plugins = {
 	-- 	-- event = "BufEnter",
 	-- 	-- Function to find the git root directory based on the current buffer's path
 	-- 	cond = function()
-	-- 	-- Use the current buffer's path as the starting point for the git search
+	-- 		-- Use the current buffer's path as the starting point for the git search
 	-- 		local current_file = vim.api.nvim_buf_get_name(0)
 	-- 		local current_dir
 	-- 		local cwd = vim.fn.getcwd()
@@ -276,23 +276,15 @@ local plugins = {
 	-- 	opts = require("IndY.plugin-configs.bufferline")
 	-- },
 	-- { -- For Web Development
-	-- Choose b/w below for colors
-	-- nvim-colortils/colortils.nvim
-	-- brenoprata10/nvim-highlight-colors
-	-- uga-rosa/ccc.nvim
-	-- { -- API testing
-	-- 	"NTBBloodbath/rest.nvim",
-	-- 	ft = {"http"},
-	-- 	opts = require("IndY.plugin-configs.rest")
-	-- },
-	-- },
-	-- {
-	-- 	"marko-cerovac/material.nvim",
-	-- 	config = function(_) "vim.g.material_style = "deep ocean"" end
-	-- },
-	-- {
-	-- 	"ThePrimeagen/vim-be-good",
-	-- 	cmd = "VimBeGood"
+	-- 	-- Choose b/w below for colors
+	-- 	-- nvim-colortils/colortils.nvim
+	-- 	-- brenoprata10/nvim-highlight-colors
+	-- 	-- uga-rosa/ccc.nvim
+	-- 	{ -- API testing
+	-- 		"NTBBloodbath/rest.nvim",
+	-- 		ft = {"http"},
+	-- 		opts = require("IndY.plugin-configs.rest")
+	-- 	},
 	-- },
 }
 
