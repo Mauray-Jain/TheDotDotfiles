@@ -35,12 +35,12 @@ vim.api.nvim_create_autocmd("FileType", {
 	end,
 })
 
-vim.api.nvim_create_autocmd("BufWritePost", {
-	group = settingsGroup,
-	desc = "Autocommand that updates, installs and removes plugins whenever you save the plugins.lua file",
-	pattern = "plugins.lua",
-	command = "Lazy sync"
-})
+-- vim.api.nvim_create_autocmd("BufWritePost", {
+-- 	group = settingsGroup,
+-- 	desc = "Autocommand that updates, installs and removes plugins whenever you save the plugins.lua file",
+-- 	pattern = "plugins.lua",
+-- 	command = "Lazy sync"
+-- })
 
 -- vim.api.nvim_create_autocmd("FileType", {
 -- 	group = settingsGroup,

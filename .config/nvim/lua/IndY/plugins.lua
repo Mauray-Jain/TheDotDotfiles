@@ -64,8 +64,12 @@ local plugins = {
 		"nvim-treesitter/nvim-treesitter",
 		build = ":TSUpdate",
 		branch = "main",
-		event = { "BufReadPre" },
-		opts = require("IndY.plugin-configs.treesitter")
+		lazy = false,
+		config = function (_)
+			require("IndY.plugin-configs.treesitter")
+		end
+		-- event = { "BufReadPre" },
+		-- opts = require("IndY.plugin-configs.treesitter")
 	},
 	{ -- Indent Guides
 		"lukas-reineke/indent-blankline.nvim",

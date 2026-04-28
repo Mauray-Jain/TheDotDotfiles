@@ -1,76 +1,31 @@
 -- TreeSitter Setup
-return {
-	sync_install = false,
-	auto_install = false,
-	init = function()
-		vim.api.nvim_create_autocmd('FileType', {
-			callback = function()
-				-- Enable treesitter highlighting and disable regex syntax
-				pcall(vim.treesitter.start)
-				-- Enable treesitter-based indentation
-				vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
-			end,
-		})
-		local ensure_installed = {
-			"bash",
-			"c",
-			-- "c_sharp",
-			"cpp",
-			"css",
-			-- "dart",
-			"go",
-			"html",
-			-- "http",
-			-- "java",
-			"javascript",
-			"jsdoc",
-			"json",
-			-- "json5",
-			-- "jsonc",
-			-- "kotlin",
-			"lua",
-			"make",
-			"markdown",
-			"markdown_inline",
-			"norg",
-			"ocaml",
-			-- "php",
-			-- "pug",
-			"python",
-			"rust",
-			"scheme",
-			-- "toml",
-			"tsx",
-			"typescript",
-			"vim",
-			"vimdoc",
-			-- "vue",
-			"zig",
-		}
-		local alreadyInstalled = require('nvim-treesitter.config').get_installed()
-		local parsersToInstall = vim.iter(ensure_installed)
-		:filter(function(parser)
-			return not vim.tbl_contains(alreadyInstalled, parser)
-		end)
-		:totable()
-		require('nvim-treesitter').install(parsersToInstall)
+-- https://github.com/BirdeeHub/birdeevim/blob/3ccb6c592bcdd55b9cb648d6affd8cd2f372b215/lua/birdee/plugins/nestsitter.lua#L10-L49
+
+local function try_attach(buf, lang)
+	if not vim.treesitter.language.add(lang) then
+		return false
+	end
+	vim.treesitter.start(buf, lang)
+	vim.b.did_indent = 1
+	vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+	return true
+end
+
+local installable = require("nvim-treesitter").get_available()
+
+vim.api.nvim_create_autocmd('FileType', {
+	callback = function(ev)
+		local buf, ft = ev.buf, ev.match
+		local lang = vim.treesitter.language.get_lang(ft)
+		if not lang then
+			return
+		end
+		if not try_attach(ev.buf, ev.match) then
+			if vim.tbl_contains(installable, lang) then
+				require("nvim-treesitter").install(lang):await(function()
+					try_attach(buf, lang)
+				end)
+			end
+		end
 	end,
-	-- ignore_install = {"vim"},
-	-- Nvim-Autopairs
-	-- autopairs = {
-	-- 	enable = true
-	-- },
-	-- Textobjects
-	-- textobjects = {
-	-- 	select = { -- Similar to ap and ip
-	-- 		enable = true,
-	-- 		lookahead = true, -- Always jump to next
-	-- 		keymaps = {
-	-- 			["if"] = "@function.inner",
-	-- 			["af"] = "@function.outer",
-	-- 			["ic"] = "@class.inner",
-	-- 			["ac"] = "@class.outer",
-	-- 		},
-	-- 	},
-	-- },
-}
+})
