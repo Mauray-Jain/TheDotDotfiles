@@ -33,8 +33,8 @@ vim.opt.rtp:prepend(lazypath)
 local plugins = {
 	{ -- Language Server Protocol
 		"neovim/nvim-lspconfig",
-		lazy = false,
-		-- event = { "BufRead", "BufNewFile" },
+		-- lazy = false,
+		event = { "BufRead", "BufNewFile" },
 		-- config = function (_)
 		-- 	require("IndY.plugin-configs.lsp-config")
 		-- end
@@ -64,10 +64,10 @@ local plugins = {
 		"nvim-treesitter/nvim-treesitter",
 		build = ":TSUpdate",
 		branch = "main",
-		lazy = false,
-		config = function (_)
-			require("IndY.plugin-configs.treesitter")
-		end
+		-- lazy = false,
+		-- config = function (_)
+		-- 	require("IndY.plugin-configs.treesitter")
+		-- end
 		-- event = { "BufReadPre" },
 		-- opts = require("IndY.plugin-configs.treesitter")
 	},
@@ -125,11 +125,11 @@ local plugins = {
 	},
 	{ -- File manager
 		"echasnovski/mini.files",
-		-- lazy = false,
-		keys = {
-			{ "<Leader>n", "<Cmd>lua MiniFiles.open()<CR>" }
-		},
-		event = "VeryLazy",
+		lazy = false,
+		-- keys = {
+		-- 	{ "<Leader>n", "<Cmd>lua MiniFiles.open()<CR>" }
+		-- },
+		-- event = "VeryLazy",
 		opts = {},
 	},
 	{ -- Git
@@ -165,37 +165,37 @@ local plugins = {
 			vim.keymap.set('n', 'yss', 'ys_', { remap = true })
 		end,
 	},
-	{ -- Notes Taking
-		"nvim-neorg/neorg",
-		-- dependencies = "nvim-lua/plenary.nvim",
-		-- build = ":Neorg sync-parsers",
-		-- tag = "v7.0.0",
-		ft = "norg",
-		version = "*",
-		cmd = "Neorg",
-		-- dependencies = "hrsh7th/nvim-cmp",
-		opts = require("IndY.plugin-configs.neorg"),
-	},
 	{ "nvim-tree/nvim-web-devicons" }, -- Icons
-	{ -- Color picker and highlighter
-		"uga-rosa/ccc.nvim",
-		cmd = "CccHighlighterToggle",
-		opts = {},
-	},
-	{ -- Flutter dev
-		'nvim-flutter/flutter-tools.nvim',
-		ft = "dart",
-		dependencies = {
-			'nvim-lua/plenary.nvim',
-			'stevearc/dressing.nvim', -- optional for vim.ui.select
-		},
-		config = true,
-	},
-	{ -- Emmet for vim bcoz the emmet lsp doesn"t have support for some things
-		"mattn/emmet-vim",
-		ft = {"html", "css", "javascript", "typescript", "vue", "javascriptreact", "typescriptreact"},
-		-- config = fuction(_) [[require("IndY.plugin-configs.emmet")]] end
-	},
+	-- { -- Notes Taking
+	-- 	"nvim-neorg/neorg",
+	-- 	-- dependencies = "nvim-lua/plenary.nvim",
+	-- 	-- build = ":Neorg sync-parsers",
+	-- 	-- tag = "v7.0.0",
+	-- 	ft = "norg",
+	-- 	version = "*",
+	-- 	cmd = "Neorg",
+	-- 	-- dependencies = "hrsh7th/nvim-cmp",
+	-- 	opts = require("IndY.plugin-configs.neorg"),
+	-- },
+	-- { -- Color picker and highlighter
+	-- 	"uga-rosa/ccc.nvim",
+	-- 	cmd = "CccHighlighterToggle",
+	-- 	opts = {},
+	-- },
+	-- { -- Flutter dev
+	-- 	'nvim-flutter/flutter-tools.nvim',
+	-- 	ft = "dart",
+	-- 	dependencies = {
+	-- 		'nvim-lua/plenary.nvim',
+	-- 		'stevearc/dressing.nvim', -- optional for vim.ui.select
+	-- 	},
+	-- 	config = true,
+	-- },
+	-- { -- Emmet for vim bcoz the emmet lsp doesn"t have support for some things
+	-- 	"mattn/emmet-vim",
+	-- 	ft = {"html", "css", "javascript", "typescript", "vue", "javascriptreact", "typescriptreact"},
+	-- 	-- config = fuction(_) [[require("IndY.plugin-configs.emmet")]] end
+	-- },
 	-- { -- Comment or Uncomment Lines
 	-- 	"numToStr/Comment.nvim",
 	-- 	dependencies = {
@@ -294,6 +294,9 @@ local plugins = {
 
 require("lazy").setup({
 	spec = plugins,
+	install = {
+		colorscheme = { "kanagawa" },
+	},
 	ui = {
 		border = "rounded"
 	},
