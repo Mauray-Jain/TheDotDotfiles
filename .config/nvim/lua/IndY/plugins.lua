@@ -34,10 +34,10 @@ local plugins = {
 	{ -- Language Server Protocol
 		"neovim/nvim-lspconfig",
 		-- lazy = false,
-		event = { "BufRead", "BufNewFile" },
-		-- config = function (_)
-		-- 	require("IndY.plugin-configs.lsp-config")
-		-- end
+		event = { "BufReadPre", "BufNewFile" },
+		config = function (_)
+			require("IndY.plugin-configs.lsp")
+		end
 	},
 	{ "ray-x/lsp_signature.nvim" },
 	{ -- Autocompletion for LSP
@@ -57,6 +57,7 @@ local plugins = {
 			},
 		},
 		config = function (_)
+			---@diagnostic disable-next-line: different-requires
 			require("IndY.plugin-configs.cmp")
 		end
 	},
@@ -64,12 +65,10 @@ local plugins = {
 		"nvim-treesitter/nvim-treesitter",
 		build = ":TSUpdate",
 		branch = "main",
-		-- lazy = false,
-		-- config = function (_)
-		-- 	require("IndY.plugin-configs.treesitter")
-		-- end
-		-- event = { "BufReadPre" },
-		-- opts = require("IndY.plugin-configs.treesitter")
+		event = { "BufReadPre" },
+		config = function (_)
+			require("IndY.plugin-configs.treesitter")
+		end
 	},
 	{ -- Indent Guides
 		"lukas-reineke/indent-blankline.nvim",

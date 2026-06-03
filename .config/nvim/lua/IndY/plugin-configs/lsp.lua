@@ -88,13 +88,13 @@ local servers = {
 
 for _, server in pairs(servers) do
 	if server == "lua_ls" then
-		local luals_opts = require("IndY.core.lsp-server.lua_ls")
+		local luals_opts = require("IndY.plugin-configs.lsp-server.lua_ls")
 		opts = vim.tbl_deep_extend("force", luals_opts, opts)
 	elseif server == "ccls" then
-		local ccls_opts = require("IndY.core.lsp-server.ccls")
+		local ccls_opts = require("IndY.plugin-configs.lsp-server.ccls")
 		opts.init_options = ccls_opts
 	elseif server == "jsonls" then
-		local json_opts = require("IndY.core.lsp-server.jsonls")
+		local json_opts = require("IndY.plugin-configs.lsp-server.jsonls")
 		opts = vim.tbl_deep_extend("force", json_opts, opts)
 	elseif server == "ts_ls" then
 		opts.init_options = {lint = true}
