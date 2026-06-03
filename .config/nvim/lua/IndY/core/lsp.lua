@@ -58,8 +58,8 @@ local on_attach = function(client, bufnr)
 end
 
 -- Various servers' setup
---[[ local capabilities = vim.lsp.protocol.make_client_capabilities() ]]
-local capabilities = require('cmp_nvim_lsp').default_capabilities()
+-- local capabilities = vim.lsp.protocol.make_client_capabilities()
+local capabilities = require('blink.cmp').get_lsp_capabilities({})
 
 local opts = {
 	on_attach = on_attach,
@@ -88,13 +88,13 @@ local servers = {
 
 for _, server in pairs(servers) do
 	if server == "lua_ls" then
-		local luals_opts = require("IndY.plugin-configs.lsp-server.lua_ls")
+		local luals_opts = require("IndY.core.lsp-server.lua_ls")
 		opts = vim.tbl_deep_extend("force", luals_opts, opts)
 	elseif server == "ccls" then
-		local ccls_opts = require("IndY.plugin-configs.lsp-server.ccls")
+		local ccls_opts = require("IndY.core.lsp-server.ccls")
 		opts.init_options = ccls_opts
 	elseif server == "jsonls" then
-		local json_opts = require("IndY.plugin-configs.lsp-server.jsonls")
+		local json_opts = require("IndY.core.lsp-server.jsonls")
 		opts = vim.tbl_deep_extend("force", json_opts, opts)
 	elseif server == "ts_ls" then
 		opts.init_options = {lint = true}
@@ -112,7 +112,7 @@ for _, server in pairs(servers) do
 	-- 	opts.root_dir = lspconfig.util.root_pattern("tailwind.config.js")
 	-- else
 	-- 	opts = opts_copy
-		-- local path = string.format("IndY.plugin-configs.lsp.lsp-server.%s", server)
+		-- local path = string.format("IndY.core.lsp.lsp-server.%s", server)
 		-- local err, server_opts = pcall(require, path)
 		-- if err ~= true then
 		-- 	print(server_opts)

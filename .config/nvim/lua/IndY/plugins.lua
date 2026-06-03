@@ -35,40 +35,47 @@ local plugins = {
 		"neovim/nvim-lspconfig",
 		-- lazy = false,
 		event = { "BufReadPre", "BufNewFile" },
-		config = function (_)
-			require("IndY.plugin-configs.lsp")
-		end
+		-- config = function (_)
+		-- 	require("IndY.plugin-configs.lsp")
+		-- end
 	},
 	{ "ray-x/lsp_signature.nvim" },
 	{ -- Autocompletion for LSP
-		"hrsh7th/nvim-cmp",
-		event = { "InsertEnter" },
-		dependencies = {
-			"hrsh7th/cmp-nvim-lsp", -- LSP source for nvim-cmp
-			"hrsh7th/cmp-buffer", -- Buffer word source
-			"hrsh7th/cmp-path", -- Path source
-			"saadparwaiz1/cmp_luasnip", -- Snippets source for nvim-cmp
-			"rafamadriz/friendly-snippets", -- More Snippets
-			{ -- Snippets engine
-				"L3MON4D3/LuaSnip",
-				config = function (_)
-					require("IndY.plugin-configs.lua-snip")
-				end
-			},
-		},
-		config = function (_)
-			---@diagnostic disable-next-line: different-requires
-			require("IndY.plugin-configs.cmp")
-		end
+		"saghen/blink.cmp",
+		version = "1.*",
+		event = { "BufReadPre", "BufNewFile" },
+		dependencies = { "rafamadriz/friendly-snippets" },
+		opts = require("IndY.plugin-configs.blink"),
 	},
+	-- { -- Autocompletion for LSP
+	-- 	"hrsh7th/nvim-cmp",
+	-- 	event = { "InsertEnter" },
+	-- 	dependencies = {
+	-- 		"hrsh7th/cmp-nvim-lsp", -- LSP source for nvim-cmp
+	-- 		"hrsh7th/cmp-buffer", -- Buffer word source
+	-- 		"hrsh7th/cmp-path", -- Path source
+	-- 		"saadparwaiz1/cmp_luasnip", -- Snippets source for nvim-cmp
+	-- 		"rafamadriz/friendly-snippets", -- More Snippets
+	-- 		{ -- Snippets engine
+	-- 			"L3MON4D3/LuaSnip",
+	-- 			config = function (_)
+	-- 				require("IndY.plugin-configs.lua-snip")
+	-- 			end
+	-- 		},
+	-- 	},
+	-- 	config = function (_)
+	-- 		---@diagnostic disable-next-line: different-requires
+	-- 		require("IndY.plugin-configs.cmp")
+	-- 	end
+	-- },
 	{ -- Syntax Highlighting and parsers
 		"nvim-treesitter/nvim-treesitter",
 		build = ":TSUpdate",
 		branch = "main",
-		event = { "BufReadPre" },
-		config = function (_)
-			require("IndY.plugin-configs.treesitter")
-		end
+		-- event = { "BufReadPre" },
+		-- config = function (_)
+		-- 	require("IndY.plugin-configs.treesitter")
+		-- end
 	},
 	{ -- Indent Guides
 		"lukas-reineke/indent-blankline.nvim",

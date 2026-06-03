@@ -14,6 +14,14 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 	end
 })
 
+vim.api.nvim_create_autocmd({ "BufReadPre", "BufNewFile" }, {
+	group = settingsGroup,
+	once = true,
+	callback = function()
+		require("IndY.core.lsp")
+	end,
+})
+
 vim.api.nvim_create_autocmd("FileType", {
 	group = settingsGroup,
 	callback = function()
