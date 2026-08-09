@@ -1,4 +1,5 @@
 return {
+	snippets = { preset = "luasnip" },
 	completion = {
 		menu = {
 			border = 'single',
@@ -29,8 +30,10 @@ return {
 		['<S-Tab>'] = false,
 		['<Up>'] = false,
 		['<Down>'] = false,
-		['<C-k>'] = { 'snippet_forward', 'fallback' },
-		['<C-j>'] = { 'snippet_backward', 'fallback' },
+		-- ['<C-k>'] = { 'snippet_forward', 'fallback' },
+		-- ['<C-j>'] = { 'snippet_backward', 'fallback' },
+		['<C-k>'] = false,
+		['<C-j>'] = false,
 	},
 	appearance = {
 		kind_icons = {

@@ -44,30 +44,19 @@ local plugins = {
 		"saghen/blink.cmp",
 		version = "1.*",
 		event = { "BufReadPre", "BufNewFile" },
-		dependencies = { "rafamadriz/friendly-snippets" },
+		dependencies = {
+			{ -- Snippets engine
+				"L3MON4D3/LuaSnip",
+				version = "v2.*",
+				build = "make install_jsregexp",
+				dependencies = "rafamadriz/friendly-snippets",
+				config = function (_)
+					require("IndY.plugin-configs.lua-snip")
+				end
+			},
+		},
 		opts = require("IndY.plugin-configs.blink"),
 	},
-	-- { -- Autocompletion for LSP
-	-- 	"hrsh7th/nvim-cmp",
-	-- 	event = { "InsertEnter" },
-	-- 	dependencies = {
-	-- 		"hrsh7th/cmp-nvim-lsp", -- LSP source for nvim-cmp
-	-- 		"hrsh7th/cmp-buffer", -- Buffer word source
-	-- 		"hrsh7th/cmp-path", -- Path source
-	-- 		"saadparwaiz1/cmp_luasnip", -- Snippets source for nvim-cmp
-	-- 		"rafamadriz/friendly-snippets", -- More Snippets
-	-- 		{ -- Snippets engine
-	-- 			"L3MON4D3/LuaSnip",
-	-- 			config = function (_)
-	-- 				require("IndY.plugin-configs.lua-snip")
-	-- 			end
-	-- 		},
-	-- 	},
-	-- 	config = function (_)
-	-- 		---@diagnostic disable-next-line: different-requires
-	-- 		require("IndY.plugin-configs.cmp")
-	-- 	end
-	-- },
 	{ -- Syntax Highlighting and parsers
 		"nvim-treesitter/nvim-treesitter",
 		build = ":TSUpdate",
@@ -172,16 +161,34 @@ local plugins = {
 		end,
 	},
 	{ "nvim-tree/nvim-web-devicons" }, -- Icons
-	-- { -- Notes Taking
-	-- 	"nvim-neorg/neorg",
-	-- 	-- dependencies = "nvim-lua/plenary.nvim",
-	-- 	-- build = ":Neorg sync-parsers",
-	-- 	-- tag = "v7.0.0",
-	-- 	ft = "norg",
-	-- 	version = "*",
-	-- 	cmd = "Neorg",
-	-- 	-- dependencies = "hrsh7th/nvim-cmp",
-	-- 	opts = require("IndY.plugin-configs.neorg"),
+	{ -- Notes Taking
+		"nvim-neorg/neorg",
+		dependencies = "benlubas/neorg-interim-ls",
+		ft = "norg",
+		version = "*",
+		cmd = "Neorg",
+		opts = require("IndY.plugin-configs.neorg"),
+	},
+	-- { -- Autocompletion for LSP
+	-- 	"hrsh7th/nvim-cmp",
+	-- 	event = { "InsertEnter" },
+	-- 	dependencies = {
+	-- 		"hrsh7th/cmp-nvim-lsp", -- LSP source for nvim-cmp
+	-- 		"hrsh7th/cmp-buffer", -- Buffer word source
+	-- 		"hrsh7th/cmp-path", -- Path source
+	-- 		"saadparwaiz1/cmp_luasnip", -- Snippets source for nvim-cmp
+	-- 		"rafamadriz/friendly-snippets", -- More Snippets
+	-- 		{ -- Snippets engine
+	-- 			"L3MON4D3/LuaSnip",
+	-- 			config = function (_)
+	-- 				require("IndY.plugin-configs.lua-snip")
+	-- 			end
+	-- 		},
+	-- 	},
+	-- 	config = function (_)
+	-- 		---@diagnostic disable-next-line: different-requires
+	-- 		require("IndY.plugin-configs.cmp")
+	-- 	end
 	-- },
 	-- { -- Color picker and highlighter
 	-- 	"uga-rosa/ccc.nvim",

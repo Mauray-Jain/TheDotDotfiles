@@ -15,6 +15,7 @@ end
 local installable = require("nvim-treesitter").get_available()
 
 vim.api.nvim_create_autocmd('FileType', {
+	group = vim.api.nvim_create_augroup("treesittering", { clear = true }),
 	callback = function(ev)
 		local buf, ft = ev.buf, ev.match
 		local lang = vim.treesitter.language.get_lang(ft)

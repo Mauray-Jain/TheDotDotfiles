@@ -18,12 +18,13 @@ return {
 				},
 			},
 		},
-		["core.completion"] = {
-			config = {
-				engine = "nvim-cmp",
-			},
-		},
 		["core.looking-glass"] = {},
 		["core.export"] = {},
+		["core.completion"] = {
+			config = {
+				engine = { module_name = "external.lsp-completion" },
+			},
+		},
+		["external.interim-ls"] = {},
 	},
 }
