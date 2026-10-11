@@ -83,3 +83,6 @@ export FABRIC_CFG_PATH="$FABRIC_SAMPLES_ROOT/config"
 
 source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# Pi-Bolt
+export PATH="$HOME/.local/bin:$PATH"
