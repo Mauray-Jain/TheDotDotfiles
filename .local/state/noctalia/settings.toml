@@ -1,0 +1,150 @@
+config_version = 14
+
+[bar.default]
+background_opacity = 0.60999998636543751
+center = [ "active_window" ]
+end = [ "date", "clock", "battery", "volume", "brightness", "network", "bluetooth", "notifications", "session" ]
+margin_ends = 10
+start = [ "control-center", "launcher", "workspaces" ]
+thickness = 30
+widget_spacing = 16
+
+[battery]
+warning_threshold = 20
+
+[desktop_widgets]
+schema_version = 2
+widget_order = []
+
+    [desktop_widgets.grid]
+    cell_size = 16
+    major_interval = 4
+    visible = true
+
+    [desktop_widgets.widget]
+
+[dock]
+auto_hide = true
+item_spacing = 20
+reserve_space = false
+show_dots = true
+
+[idle]
+behavior_order = [ "lock", "screen-off", "lock-and-suspend" ]
+pre_action_fade_seconds = 2.0
+
+    [idle.behavior.lock]
+    action = "lock"
+    enabled = false
+    timeout = 600.0
+
+    [idle.behavior.lock-and-suspend]
+    action = "lock_and_suspend"
+    enabled = false
+    timeout = 900.0
+
+    [idle.behavior.screen-off]
+    action = "screen_off"
+    enabled = false
+    locked_timeout = 1.0
+    timeout = 660.0
+
+[location]
+address = "Delhi, India"
+
+[lockscreen]
+wallpaper = "/home/mauray/Downloads/wallpapers/sunrise.jpg"
+
+[lockscreen_widgets]
+enabled = true
+schema_version = 2
+widget_order = [ "lockscreen-login-box@eDP-1", "lockscreen-widget-0000000000000001" ]
+
+    [lockscreen_widgets.grid]
+    cell_size = 16
+    major_interval = 4
+    visible = true
+
+    [lockscreen_widgets.widget."lockscreen-login-box@eDP-1"]
+    box_height = 196.0
+    box_width = 810.0
+    cx = 960.0
+    cy = 898.0
+    output = "eDP-1"
+    placement_height = 1080.0
+    placement_width = 1920.0
+    rotation = 0.0
+    type = "login_box"
+
+        [lockscreen_widgets.widget."lockscreen-login-box@eDP-1".settings]
+        background_color = "surface_variant"
+        background_opacity = 0.88
+        background_radius = 12.0
+        center_password_text = false
+        input_opacity = 1.0
+        input_radius = 6.0
+        layout = "regular"
+        show_caps_lock = true
+        show_keyboard_layout = true
+        show_login_button = true
+        show_media = true
+        show_session_buttons = true
+        show_unlock_hint = true
+        show_weather = true
+
+    [lockscreen_widgets.widget.lockscreen-widget-0000000000000001]
+    box_height = 0.0
+    box_width = 0.0
+    cx = 960.0
+    cy = 540.0
+    output = "eDP-1"
+    placement_height = 1080.0
+    placement_width = 1920.0
+    rotation = 0.0
+    type = "clock"
+
+[shell]
+app_icon_colorize = true
+font_family = "JetBrainsMono Nerd Font Mono"
+polkit_agent = true
+screen_time_enabled = true
+time_format = "{:%H:%M:%S}"
+
+    [shell.launcher.providers.emoji]
+    global = true
+
+    [shell.launcher.providers.panels]
+    global = true
+
+    [shell.launcher.providers.wallpaper]
+    global = true
+
+    [shell.launcher.providers.windows]
+    global = true
+
+    [shell.panel]
+    open_near_click_wallpaper = true
+    transparency_mode = "glass"
+    wallpaper_placement = "floating"
+
+    [shell.screenshot]
+    directory = "/home/mauray/Pictures/Screenshots"
+
+[theme]
+builtin = "Catppuccin"
+community_palette = "Oxocarbon"
+mode = "dark"
+wallpaper_scheme = "m3-content"
+
+[wallpaper]
+directory = "/home/mauray/Downloads/wallpapers"
+transition = [ "disc", "fade", "honeycomb", "stripes", "wipe", "zoom" ]
+
+    [wallpaper.default]
+    path = "/home/mauray/Downloads/wallpapers/war_plane.jpg"
+
+    [wallpaper.last]
+    path = "/home/mauray/Downloads/wallpapers/war_plane.jpg"
+
+    [wallpaper.monitors.eDP-1]
+    path = "/home/mauray/Downloads/wallpapers/war_plane.jpg"
