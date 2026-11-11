@@ -2,15 +2,21 @@
 // spawn-at-startup "wl-paste" "--watch" "cliphist" "store"
 // spawn-at-startup "nm-applet"
 // spawn-at-startup "dunst"
-spawn-at-startup "xwayland-satellite"
 // spawn-at-startup "waybar"
-spawn-at-startup "noctalia"
-// spawn-at-startup "swayidle" "-w" "before-sleep" "noctalia msg session lock"
+spawn-at-startup "xwayland-satellite"
+spawn-at-startup "dms" "run"
+spawn-at-startup "bash" "-c" "wl-paste --watch cliphist store &"
+spawn-at-startup "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &"
 
 prefer-no-csd
 
 environment {
 	DISPLAY ":0"
+	XDG_CURRENT_DESKTOP "niri"
+	QT_QPA_PLATFORM "wayland"
+	ELECTRON_OZONE_PLATFORM_HINT "auto"
+	QT_QPA_PLATFORMTHEME "gtk3"
+	QT_QPA_PLATFORMTHEME_QT6 "gtk3"
 }
 
 output "eDP-1" {
@@ -21,42 +27,57 @@ hotkey-overlay {
 	skip-at-startup
 }
 
+layer-rule {
+    match namespace="^quickshell$"
+    place-within-backdrop true
+}
+
+layer-rule {
+    match namespace="dms:blurwallpaper"
+    place-within-backdrop true
+}
+
 window-rule {
 	geometry-corner-radius 12
 	clip-to-geometry true
 }
 
 window-rule {
-	match app-id="dev.noctalia.Noctalia"
-	open-floating true
-	default-column-width { fixed 1080; }
-	default-window-height { fixed 920; }
+    match app-id=r#"^org\.gnome\."#
+    draw-border-with-background false
+    geometry-corner-radius 12
+    clip-to-geometry true
 }
 
-debug {
-	honor-xdg-activation-with-invalid-serial
+window-rule {
+    match app-id=r#"^org\.wezfurlong\.wezterm$"#
+    match app-id="Alacritty"
+    match app-id="zen"
+    match app-id="com.mitchellh.ghostty"
+    match app-id="kitty"
+    draw-border-with-background false
 }
 
-// Place the regular wallpaper on the backdrop.
-layer-rule {
-	match namespace="^noctalia-wallpaper"
-	place-within-backdrop true
+window-rule {
+    match is-active=false
+    opacity 0.9
 }
 
-// Optionally, disable workspace shadows in the overview.
-overview {
-	workspace-shadow {
-		off
-	}
+window-rule {
+    geometry-corner-radius 12
+    clip-to-geometry true
 }
 
-switch-events {
-    lid-close { spawn "noctalia" "msg" "session" "lock"; }
+// Open DMS windows as floating by default (optional - DMS can manage this for you, see tip below)
+window-rule {
+    match app-id=r#"^dev\.duxlabs\.shell$"#
+    open-floating true
 }
 
 layout {
 	// Set transparent workspace background color so the backdrop is visible at all times.
 	background-color "transparent"
+	gaps 5
 	focus-ring {
 		width 2
 		active-color "#005577"
@@ -101,21 +122,58 @@ binds {
 	Mod+Return hotkey-overlay-title="Open a Terminal: alacritty" { spawn "alacritty"; }
 	// Mod+P hotkey-overlay-title="Run an Application: rofi" { spawn "rofi" "-show" "run"; }
 	// Mod+Shift+S hotkey-overlay-title="Lock the Screen: swaylock" { spawn "sh" "-c" "swaylock -i ~/Downloads/wallpapers/sunrise.jpg --font \"Hack Nerd Font Mono\""; }
-	// Mod+Shift+Ctrl+S { spawn "systemctl" "poweroff"; }
-	// Mod+Shift+Ctrl+R { spawn "systemctl" "reboot"; }
+	Mod+Shift+Ctrl+S { spawn "systemctl" "poweroff"; }
+	Mod+Shift+Ctrl+R { spawn "systemctl" "reboot"; }
 	// Mod+Shift+C { spawn "sh" "-c" "cliphist list | rofi -dmenu | cliphist decode | wl-copy"; }
-	Mod+Z { spawn "zen-browser"; }
+	// Mod+Z { spawn "zen-browser"; }
+	Mod+B { spawn "floorp"; }
 
-	// Noctalia
-    Mod+P { spawn-sh "noctalia msg panel-toggle launcher"; }
-    Mod+Space { spawn-sh "noctalia msg panel-toggle control-center"; }
-    Mod+Shift+Space { spawn-sh "noctalia msg settings-toggle"; }
-    Alt+Tab { spawn-sh "noctalia msg window-switcher hold"; }
-	Mod+Shift+S { spawn-sh "noctalia msg session lock && sleep 1 && noctalia msg session suspend"; }
-	Mod+Shift+Ctrl+S { spawn-sh "noctalia msg session shutdown"; }
-	Mod+Shift+Ctrl+R { spawn-sh "noctalia msg session reboot"; }
-	Mod+Shift+C { spawn-sh "noctalia msg panel-toggle clipboard"; }
-	Mod+S { spawn-sh "noctalia msg screenshot-region"; }
+    // Application Launchers
+    Mod+P hotkey-overlay-title="Application Launcher" {
+        spawn "dms" "ipc" "call" "spotlight" "toggle";
+    }
+    Mod+Shift+C hotkey-overlay-title="Clipboard Manager" {
+        spawn "dms" "ipc" "call" "clipboard" "toggle";
+    }
+    Mod+M hotkey-overlay-title="Task Manager" {
+        spawn "dms" "ipc" "call" "processlist" "focusOrToggle";
+    }
+    Mod+Space hotkey-overlay-title="Settings" {
+        spawn "dms" "ipc" "call" "settings" "focusOrToggle";
+    }
+    Mod+N hotkey-overlay-title="Notification Center" {
+        spawn "dms" "ipc" "call" "notifications" "toggle";
+    }
+    Mod+Y hotkey-overlay-title="Browse Wallpapers" {
+        spawn "dms" "ipc" "call" "dankdash" "wallpaper";
+    }
+
+    // Security
+    Mod+Shift+S hotkey-overlay-title="Lock Screen" {
+        spawn "dms" "ipc" "call" "lock" "lock";
+    }
+	
+	// screenshot
+	Mod+S { spawn "dms" "ipc" "call" "niri" "screenshot"; }
+
+    // Audio Controls
+    XF86AudioRaiseVolume allow-when-locked=true {
+        spawn "dms" "ipc" "call" "audio" "increment" "3";
+    }
+    XF86AudioLowerVolume allow-when-locked=true {
+        spawn "dms" "ipc" "call" "audio" "decrement" "3";
+    }
+    XF86AudioMute allow-when-locked=true {
+        spawn "dms" "ipc" "call" "audio" "mute";
+    }
+
+    // Brightness Controls
+    XF86MonBrightnessUp allow-when-locked=true {
+       spawn "dms" "ipc" "call" "brightness" "increment" "5" "";
+    }
+    XF86MonBrightnessDown allow-when-locked=true {
+       spawn "dms" "ipc" "call" "brightness" "decrement" "5" "";
+    }
 
 	// You can also use a shell. Do this if you need pipes, multiple commands, etc.
 	// Note: the entire command goes as a single argument in the end.
@@ -133,13 +191,6 @@ binds {
 	// Example brightness key mappings for brightnessctl.
 	// XF86MonBrightnessUp allow-when-locked=true { spawn "brightnessctl" "set" "5%+"; }
 	// XF86MonBrightnessDown allow-when-locked=true { spawn "brightnessctl" "set" "5%-"; }
-
-	// Volume and Brightness
-	XF86AudioRaiseVolume allow-when-locked=true { spawn-sh "noctalia msg volume-up"; }
-	XF86AudioLowerVolume allow-when-locked=true { spawn-sh "noctalia msg volume-down"; }
-	XF86AudioMute allow-when-locked=true { spawn-sh "noctalia msg volume-mute"; }
-	XF86MonBrightnessUp allow-when-locked=true { spawn-sh "noctalia msg brightness-up"; }
-	XF86MonBrightnessDown allow-when-locked=true { spawn-sh "noctalia msg brightness-down"; }
 
 	// Open/close the Overview: a zoomed-out view of workspaces and windows.
 	// You can also move the mouse into the top-left hot corner,
@@ -368,3 +419,10 @@ binds {
 	// moving the mouse or pressing any other key.
 	Mod+Shift+P { power-off-monitors; }
 }
+
+// Add to the end of ~/.config/niri/config.kdl
+include "dms/colors.kdl"
+include "dms/layout.kdl"
+include "dms/alttab.kdl"
+include "dms/binds.kdl"
+include "dms/outputs.kdl"
