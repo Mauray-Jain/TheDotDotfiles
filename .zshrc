@@ -86,3 +86,4 @@ source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 
 # Pi-Bolt
 export PATH="$HOME/.local/bin:$PATH"
+alias contexter="node /home/mauray/repo/contexter/packages/cli/dist/contexter.mjs"
