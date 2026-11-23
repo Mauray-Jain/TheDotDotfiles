@@ -6,7 +6,11 @@
 - Neovim
 - Tmux
 - Ly
-- DWL
+- Niri
+- DankMaterialShell (DMS)
+- Quickshell
+- Matugen
+- Alacritty
 - And most importantly <b><i>My creative Mind!!</i></b>
 
 ## How to Setup?
